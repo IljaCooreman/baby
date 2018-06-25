@@ -1,0 +1,10 @@
+{
+  "name": "baby",
+  "version": "0.1.0",
+  "author": "Ilja Cooreman",
+  "scripts": {
+    "start:front": "cd ./front && yarn start",
+    "start:server": "cd ./server && yarn dev",
+    "start": "yarn start:front || yarn start:server"
+  }
+}
