@@ -6,7 +6,11 @@
   ],
   "rules": {
     "no-console": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "curly": [
+      true,
+      "as-needed"
+    ]
   },
   "linterOptions": {
     "exclude": [

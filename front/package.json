@@ -5,16 +5,18 @@
   "dependencies": {
     "apollo-boost": "^0.1.9",
     "apollo-client": "^2.3.4",
+    "emotion": "^9.2.4",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-apollo": "^2.1.5",
     "react-dom": "^16.4.0",
+    "react-emotion": "^9.2.4",
     "react-scripts-ts": "2.16.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "start": "PORT=3001 react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"

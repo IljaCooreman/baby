@@ -4,7 +4,10 @@
   "author": "Ilja Cooreman",
   "scripts": {
     "start:front": "cd ./front && yarn start",
-    "start:server": "cd ./server && yarn dev",
-    "start": "yarn start:front || yarn start:server"
+    "start:server": "cd ./server && yarn dev"
+  },
+  "dependencies": {
+    "formik": "^0.11.11",
+    "react-router-dom": "^4.3.1"
   }
 }
