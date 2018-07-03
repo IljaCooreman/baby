@@ -10,7 +10,8 @@
     "curly": [
       true,
       "as-needed"
-    ]
+    ],
+    "jsx-no-lambda": false
   },
   "linterOptions": {
     "exclude": [

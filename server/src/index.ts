@@ -31,14 +31,20 @@ const resolvers = {
     //     info,
     //   )
     // },
-    createUser(parent, { name, email }, context: Context, info) {
+    async createUser(parent, { name, email }, context: Context, info) {
+      const promise = await new Promise((resolve, reject) => {
+        const wait = setTimeout(() => {
+          clearTimeout(wait);
+          resolve('resolved this, bitch');
+        }, 1000)
+      })
       return context.db.mutation.createUser(
         { data: { name, email } },
         info,
       )
     },
     async guessDate(parent, { userId, date }, context: Context, info) {
-      return context.db.mutation.createDateGuess({
+      const queryResult = await context.db.mutation.createDateGuess({
         data: {
           date, user: {
             connect: {
@@ -47,6 +53,8 @@ const resolvers = {
           }
         }
       }, info);
+      console.log('#####', queryResult);
+      return queryResult
     },
   },
 }

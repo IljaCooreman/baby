@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { css } from 'react-emotion';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export interface IButtonProps {
-  url: string,
+  url?: string,
   text: string,
   handleClick?: any,
   icon?: string,
   big?: boolean,
   submit?: boolean,
+  loading?: boolean,
+  disabled?: boolean,
 }
 
-const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit }) => {
+const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit, loading, disabled }) => {
   return (
-    <button type={submit ? 'submit' : ''}>
-      <Link
-        to={url}
-        onClick={handleClick}
-
-        className={css`
+    <button type={submit ? 'submit' : ''}
+      disabled={disabled}
+      className={css`
       background: #67D0DC;
+      min-width: 40px;
       border-radius: 48px;
       font-family: Roboto-Medium;
       font-size: 25px;
@@ -28,9 +28,17 @@ const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, bi
       color: #FAF9FF;
       text-align: center;
       text-transform: none;
+      cursor: ${disabled ? 'default' : 'pointer'};
+      opacity: ${disabled ? .2 : 1};
     `}>
-        {text} {icon}
-      </Link>
+
+      {/* <Link
+        to={url}
+      onClick={handleClick} */}
+      {/* > */}
+
+      {loading ? 'laden...' : text} {icon}
+      {/* </Link> */}
     </button>
   )
 };
