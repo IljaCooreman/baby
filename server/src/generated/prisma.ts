@@ -6,47 +6,47 @@ import { makePrismaBindingClass, BasePrismaOptions } from 'prisma-binding'
 export interface Query {
     posts: <T = Post[]>(args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     users: <T = User[]>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    dateGuesses: <T = DateGuess[]>(args: { where?: DateGuessWhereInput, orderBy?: DateGuessOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    guesses: <T = Guess[]>(args: { where?: GuessWhereInput, orderBy?: GuessOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     post: <T = Post | null>(args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     user: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    dateGuess: <T = DateGuess | null>(args: { where: DateGuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    guess: <T = Guess | null>(args: { where: GuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     postsConnection: <T = PostConnection>(args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     usersConnection: <T = UserConnection>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    dateGuessesConnection: <T = DateGuessConnection>(args: { where?: DateGuessWhereInput, orderBy?: DateGuessOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    guessesConnection: <T = GuessConnection>(args: { where?: GuessWhereInput, orderBy?: GuessOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
     createPost: <T = Post>(args: { data: PostCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createUser: <T = User>(args: { data: UserCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    createDateGuess: <T = DateGuess>(args: { data: DateGuessCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createGuess: <T = Guess>(args: { data: GuessCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updatePost: <T = Post | null>(args: { data: PostUpdateInput, where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateUser: <T = User | null>(args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateDateGuess: <T = DateGuess | null>(args: { data: DateGuessUpdateInput, where: DateGuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateGuess: <T = Guess | null>(args: { data: GuessUpdateInput, where: GuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deletePost: <T = Post | null>(args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteUser: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteDateGuess: <T = DateGuess | null>(args: { where: DateGuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteGuess: <T = Guess | null>(args: { where: GuessWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPost: <T = Post>(args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertUser: <T = User>(args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    upsertDateGuess: <T = DateGuess>(args: { where: DateGuessWhereUniqueInput, create: DateGuessCreateInput, update: DateGuessUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertGuess: <T = Guess>(args: { where: GuessWhereUniqueInput, create: GuessCreateInput, update: GuessUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPosts: <T = BatchPayload>(args: { data: PostUpdateInput, where?: PostWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyUsers: <T = BatchPayload>(args: { data: UserUpdateInput, where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyDateGuesses: <T = BatchPayload>(args: { data: DateGuessUpdateInput, where?: DateGuessWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyGuesses: <T = BatchPayload>(args: { data: GuessUpdateInput, where?: GuessWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPosts: <T = BatchPayload>(args: { where?: PostWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyDateGuesses: <T = BatchPayload>(args: { where?: DateGuessWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
+    deleteManyGuesses: <T = BatchPayload>(args: { where?: GuessWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Subscription {
     post: <T = PostSubscriptionPayload | null>(args: { where?: PostSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     user: <T = UserSubscriptionPayload | null>(args: { where?: UserSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    dateGuess: <T = DateGuessSubscriptionPayload | null>(args: { where?: DateGuessSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
+    guess: <T = GuessSubscriptionPayload | null>(args: { where?: GuessSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
 
 export interface Exists {
   Post: (where?: PostWhereInput) => Promise<boolean>
   User: (where?: UserWhereInput) => Promise<boolean>
-  DateGuess: (where?: DateGuessWhereInput) => Promise<boolean>
+  Guess: (where?: GuessWhereInput) => Promise<boolean>
 }
 
 export interface Prisma {
@@ -71,7 +71,7 @@ export interface BindingConstructor<T> {
  * Type Defs
 */
 
-const typeDefs = `type AggregateDateGuess {
+const typeDefs = `type AggregateGuess {
   count: Int!
 }
 
@@ -88,79 +88,93 @@ type BatchPayload {
   count: Long!
 }
 
-type DateGuess implements Node {
+scalar DateTime
+
+type Guess implements Node {
   id: ID!
   createdAt: DateTime!
   date: String!
+  weight: Int
+  sex: String!
   user(where: UserWhereInput): User
 }
 
 """A connection to a list of items."""
-type DateGuessConnection {
+type GuessConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [DateGuessEdge]!
-  aggregate: AggregateDateGuess!
+  edges: [GuessEdge]!
+  aggregate: AggregateGuess!
 }
 
-input DateGuessCreateInput {
+input GuessCreateInput {
   date: String!
-  user: UserCreateOneWithoutDateGuessInput
+  weight: Int
+  sex: String!
+  user: UserCreateOneWithoutGuessInput
 }
 
-input DateGuessCreateOneWithoutUserInput {
-  create: DateGuessCreateWithoutUserInput
-  connect: DateGuessWhereUniqueInput
+input GuessCreateOneWithoutUserInput {
+  create: GuessCreateWithoutUserInput
+  connect: GuessWhereUniqueInput
 }
 
-input DateGuessCreateWithoutUserInput {
+input GuessCreateWithoutUserInput {
   date: String!
+  weight: Int
+  sex: String!
 }
 
 """An edge in a connection."""
-type DateGuessEdge {
+type GuessEdge {
   """The item at the end of the edge."""
-  node: DateGuess!
+  node: Guess!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum DateGuessOrderByInput {
+enum GuessOrderByInput {
   id_ASC
   id_DESC
   createdAt_ASC
   createdAt_DESC
   date_ASC
   date_DESC
+  weight_ASC
+  weight_DESC
+  sex_ASC
+  sex_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
-type DateGuessPreviousValues {
+type GuessPreviousValues {
   id: ID!
   createdAt: DateTime!
   date: String!
+  weight: Int
+  sex: String!
 }
 
-type DateGuessSubscriptionPayload {
+type GuessSubscriptionPayload {
   mutation: MutationType!
-  node: DateGuess
+  node: Guess
   updatedFields: [String!]
-  previousValues: DateGuessPreviousValues
+  previousValues: GuessPreviousValues
 }
 
-input DateGuessSubscriptionWhereInput {
+input GuessSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [DateGuessSubscriptionWhereInput!]
+  AND: [GuessSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [DateGuessSubscriptionWhereInput!]
+  OR: [GuessSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [DateGuessSubscriptionWhereInput!]
+  NOT: [GuessSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -181,41 +195,45 @@ input DateGuessSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: DateGuessWhereInput
+  node: GuessWhereInput
 }
 
-input DateGuessUpdateInput {
+input GuessUpdateInput {
   date: String
-  user: UserUpdateOneWithoutDateGuessInput
+  weight: Int
+  sex: String
+  user: UserUpdateOneWithoutGuessInput
 }
 
-input DateGuessUpdateOneWithoutUserInput {
-  create: DateGuessCreateWithoutUserInput
-  connect: DateGuessWhereUniqueInput
+input GuessUpdateOneWithoutUserInput {
+  create: GuessCreateWithoutUserInput
+  connect: GuessWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: DateGuessUpdateWithoutUserDataInput
-  upsert: DateGuessUpsertWithoutUserInput
+  update: GuessUpdateWithoutUserDataInput
+  upsert: GuessUpsertWithoutUserInput
 }
 
-input DateGuessUpdateWithoutUserDataInput {
+input GuessUpdateWithoutUserDataInput {
   date: String
+  weight: Int
+  sex: String
 }
 
-input DateGuessUpsertWithoutUserInput {
-  update: DateGuessUpdateWithoutUserDataInput!
-  create: DateGuessCreateWithoutUserInput!
+input GuessUpsertWithoutUserInput {
+  update: GuessUpdateWithoutUserDataInput!
+  create: GuessCreateWithoutUserInput!
 }
 
-input DateGuessWhereInput {
+input GuessWhereInput {
   """Logical AND on all given filters."""
-  AND: [DateGuessWhereInput!]
+  AND: [GuessWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [DateGuessWhereInput!]
+  OR: [GuessWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [DateGuessWhereInput!]
+  NOT: [GuessWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -318,14 +336,74 @@ input DateGuessWhereInput {
 
   """All values not ending with the given string."""
   date_not_ends_with: String
+  weight: Int
+
+  """All values that are not equal to given value."""
+  weight_not: Int
+
+  """All values that are contained in given list."""
+  weight_in: [Int!]
+
+  """All values that are not contained in given list."""
+  weight_not_in: [Int!]
+
+  """All values less than the given value."""
+  weight_lt: Int
+
+  """All values less than or equal the given value."""
+  weight_lte: Int
+
+  """All values greater than the given value."""
+  weight_gt: Int
+
+  """All values greater than or equal the given value."""
+  weight_gte: Int
+  sex: String
+
+  """All values that are not equal to given value."""
+  sex_not: String
+
+  """All values that are contained in given list."""
+  sex_in: [String!]
+
+  """All values that are not contained in given list."""
+  sex_not_in: [String!]
+
+  """All values less than the given value."""
+  sex_lt: String
+
+  """All values less than or equal the given value."""
+  sex_lte: String
+
+  """All values greater than the given value."""
+  sex_gt: String
+
+  """All values greater than or equal the given value."""
+  sex_gte: String
+
+  """All values containing the given string."""
+  sex_contains: String
+
+  """All values not containing the given string."""
+  sex_not_contains: String
+
+  """All values starting with the given string."""
+  sex_starts_with: String
+
+  """All values not starting with the given string."""
+  sex_not_starts_with: String
+
+  """All values ending with the given string."""
+  sex_ends_with: String
+
+  """All values not ending with the given string."""
+  sex_not_ends_with: String
   user: UserWhereInput
 }
 
-input DateGuessWhereUniqueInput {
+input GuessWhereUniqueInput {
   id: ID
 }
-
-scalar DateTime
 
 """
 The \`Long\` scalar type represents non-fractional signed whole numeric values.
@@ -336,22 +414,22 @@ scalar Long
 type Mutation {
   createPost(data: PostCreateInput!): Post!
   createUser(data: UserCreateInput!): User!
-  createDateGuess(data: DateGuessCreateInput!): DateGuess!
+  createGuess(data: GuessCreateInput!): Guess!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateDateGuess(data: DateGuessUpdateInput!, where: DateGuessWhereUniqueInput!): DateGuess
+  updateGuess(data: GuessUpdateInput!, where: GuessWhereUniqueInput!): Guess
   deletePost(where: PostWhereUniqueInput!): Post
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteDateGuess(where: DateGuessWhereUniqueInput!): DateGuess
+  deleteGuess(where: GuessWhereUniqueInput!): Guess
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertDateGuess(where: DateGuessWhereUniqueInput!, create: DateGuessCreateInput!, update: DateGuessUpdateInput!): DateGuess!
+  upsertGuess(where: GuessWhereUniqueInput!, create: GuessCreateInput!, update: GuessUpdateInput!): Guess!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyDateGuesses(data: DateGuessUpdateInput!, where: DateGuessWhereInput): BatchPayload!
+  updateManyGuesses(data: GuessUpdateInput!, where: GuessWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyDateGuesses(where: DateGuessWhereInput): BatchPayload!
+  deleteManyGuesses(where: GuessWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -622,13 +700,13 @@ input PostWhereUniqueInput {
 type Query {
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  dateGuesses(where: DateGuessWhereInput, orderBy: DateGuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DateGuess]!
+  guesses(where: GuessWhereInput, orderBy: GuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Guess]!
   post(where: PostWhereUniqueInput!): Post
   user(where: UserWhereUniqueInput!): User
-  dateGuess(where: DateGuessWhereUniqueInput!): DateGuess
+  guess(where: GuessWhereUniqueInput!): Guess
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  dateGuessesConnection(where: DateGuessWhereInput, orderBy: DateGuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DateGuessConnection!
+  guessesConnection(where: GuessWhereInput, orderBy: GuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GuessConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -640,7 +718,7 @@ type Query {
 type Subscription {
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  dateGuess(where: DateGuessSubscriptionWhereInput): DateGuessSubscriptionPayload
+  guess(where: GuessSubscriptionWhereInput): GuessSubscriptionPayload
 }
 
 type User implements Node {
@@ -648,7 +726,7 @@ type User implements Node {
   createdAt: DateTime!
   name: String!
   email: String!
-  dateGuess(where: DateGuessWhereInput): DateGuess
+  guess(where: GuessWhereInput): Guess
 }
 
 """A connection to a list of items."""
@@ -664,15 +742,15 @@ type UserConnection {
 input UserCreateInput {
   name: String!
   email: String!
-  dateGuess: DateGuessCreateOneWithoutUserInput
+  guess: GuessCreateOneWithoutUserInput
 }
 
-input UserCreateOneWithoutDateGuessInput {
-  create: UserCreateWithoutDateGuessInput
+input UserCreateOneWithoutGuessInput {
+  create: UserCreateWithoutGuessInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutDateGuessInput {
+input UserCreateWithoutGuessInput {
   name: String!
   email: String!
 }
@@ -748,26 +826,26 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
-  dateGuess: DateGuessUpdateOneWithoutUserInput
+  guess: GuessUpdateOneWithoutUserInput
 }
 
-input UserUpdateOneWithoutDateGuessInput {
-  create: UserCreateWithoutDateGuessInput
+input UserUpdateOneWithoutGuessInput {
+  create: UserCreateWithoutGuessInput
   connect: UserWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: UserUpdateWithoutDateGuessDataInput
-  upsert: UserUpsertWithoutDateGuessInput
+  update: UserUpdateWithoutGuessDataInput
+  upsert: UserUpsertWithoutGuessInput
 }
 
-input UserUpdateWithoutDateGuessDataInput {
+input UserUpdateWithoutGuessDataInput {
   name: String
   email: String
 }
 
-input UserUpsertWithoutDateGuessInput {
-  update: UserUpdateWithoutDateGuessDataInput!
-  create: UserCreateWithoutDateGuessInput!
+input UserUpsertWithoutGuessInput {
+  update: UserUpdateWithoutGuessDataInput!
+  create: UserCreateWithoutGuessInput!
 }
 
 input UserWhereInput {
@@ -921,7 +999,7 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  dateGuess: DateGuessWhereInput
+  guess: GuessWhereInput
 }
 
 input UserWhereUniqueInput {
@@ -961,12 +1039,16 @@ export type PostOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type DateGuessOrderByInput =   'id_ASC' |
+export type GuessOrderByInput =   'id_ASC' |
   'id_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
   'date_ASC' |
   'date_DESC' |
+  'weight_ASC' |
+  'weight_DESC' |
+  'sex_ASC' |
+  'sex_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC'
 
@@ -1030,47 +1112,53 @@ export interface PostWhereInput {
   text_not_ends_with?: String
 }
 
-export interface DateGuessUpdateInput {
+export interface GuessUpdateInput {
   date?: String
-  user?: UserUpdateOneWithoutDateGuessInput
+  weight?: Int
+  sex?: String
+  user?: UserUpdateOneWithoutGuessInput
 }
 
-export interface DateGuessCreateOneWithoutUserInput {
-  create?: DateGuessCreateWithoutUserInput
-  connect?: DateGuessWhereUniqueInput
+export interface GuessCreateOneWithoutUserInput {
+  create?: GuessCreateWithoutUserInput
+  connect?: GuessWhereUniqueInput
 }
 
-export interface DateGuessUpsertWithoutUserInput {
-  update: DateGuessUpdateWithoutUserDataInput
-  create: DateGuessCreateWithoutUserInput
+export interface GuessUpsertWithoutUserInput {
+  update: GuessUpdateWithoutUserDataInput
+  create: GuessCreateWithoutUserInput
 }
 
-export interface DateGuessCreateWithoutUserInput {
+export interface GuessCreateWithoutUserInput {
   date: String
+  weight?: Int
+  sex: String
 }
 
-export interface DateGuessUpdateWithoutUserDataInput {
+export interface GuessUpdateWithoutUserDataInput {
   date?: String
+  weight?: Int
+  sex?: String
 }
 
-export interface DateGuessSubscriptionWhereInput {
-  AND?: DateGuessSubscriptionWhereInput[] | DateGuessSubscriptionWhereInput
-  OR?: DateGuessSubscriptionWhereInput[] | DateGuessSubscriptionWhereInput
-  NOT?: DateGuessSubscriptionWhereInput[] | DateGuessSubscriptionWhereInput
+export interface GuessSubscriptionWhereInput {
+  AND?: GuessSubscriptionWhereInput[] | GuessSubscriptionWhereInput
+  OR?: GuessSubscriptionWhereInput[] | GuessSubscriptionWhereInput
+  NOT?: GuessSubscriptionWhereInput[] | GuessSubscriptionWhereInput
   mutation_in?: MutationType[] | MutationType
   updatedFields_contains?: String
   updatedFields_contains_every?: String[] | String
   updatedFields_contains_some?: String[] | String
-  node?: DateGuessWhereInput
+  node?: GuessWhereInput
 }
 
-export interface DateGuessUpdateOneWithoutUserInput {
-  create?: DateGuessCreateWithoutUserInput
-  connect?: DateGuessWhereUniqueInput
+export interface GuessUpdateOneWithoutUserInput {
+  create?: GuessCreateWithoutUserInput
+  connect?: GuessWhereUniqueInput
   disconnect?: Boolean
   delete?: Boolean
-  update?: DateGuessUpdateWithoutUserDataInput
-  upsert?: DateGuessUpsertWithoutUserInput
+  update?: GuessUpdateWithoutUserDataInput
+  upsert?: GuessUpsertWithoutUserInput
 }
 
 export interface UserSubscriptionWhereInput {
@@ -1087,12 +1175,12 @@ export interface UserSubscriptionWhereInput {
 export interface UserUpdateInput {
   name?: String
   email?: String
-  dateGuess?: DateGuessUpdateOneWithoutUserInput
+  guess?: GuessUpdateOneWithoutUserInput
 }
 
-export interface UserUpsertWithoutDateGuessInput {
-  update: UserUpdateWithoutDateGuessDataInput
-  create: UserCreateWithoutDateGuessInput
+export interface UserUpsertWithoutGuessInput {
+  update: UserUpdateWithoutGuessDataInput
+  create: UserCreateWithoutGuessInput
 }
 
 export interface PostUpdateInput {
@@ -1105,12 +1193,12 @@ export interface PostWhereUniqueInput {
   id?: ID_Input
 }
 
-export interface UserCreateWithoutDateGuessInput {
+export interface UserCreateWithoutGuessInput {
   name: String
   email: String
 }
 
-export interface DateGuessWhereUniqueInput {
+export interface GuessWhereUniqueInput {
   id?: ID_Input
 }
 
@@ -1168,29 +1256,31 @@ export interface UserWhereInput {
   email_not_starts_with?: String
   email_ends_with?: String
   email_not_ends_with?: String
-  dateGuess?: DateGuessWhereInput
+  guess?: GuessWhereInput
 }
 
 export interface UserCreateInput {
   name: String
   email: String
-  dateGuess?: DateGuessCreateOneWithoutUserInput
+  guess?: GuessCreateOneWithoutUserInput
 }
 
-export interface DateGuessCreateInput {
+export interface GuessCreateInput {
   date: String
-  user?: UserCreateOneWithoutDateGuessInput
+  weight?: Int
+  sex: String
+  user?: UserCreateOneWithoutGuessInput
 }
 
-export interface UserCreateOneWithoutDateGuessInput {
-  create?: UserCreateWithoutDateGuessInput
+export interface UserCreateOneWithoutGuessInput {
+  create?: UserCreateWithoutGuessInput
   connect?: UserWhereUniqueInput
 }
 
-export interface DateGuessWhereInput {
-  AND?: DateGuessWhereInput[] | DateGuessWhereInput
-  OR?: DateGuessWhereInput[] | DateGuessWhereInput
-  NOT?: DateGuessWhereInput[] | DateGuessWhereInput
+export interface GuessWhereInput {
+  AND?: GuessWhereInput[] | GuessWhereInput
+  OR?: GuessWhereInput[] | GuessWhereInput
+  NOT?: GuessWhereInput[] | GuessWhereInput
   id?: ID_Input
   id_not?: ID_Input
   id_in?: ID_Input[] | ID_Input
@@ -1227,16 +1317,38 @@ export interface DateGuessWhereInput {
   date_not_starts_with?: String
   date_ends_with?: String
   date_not_ends_with?: String
+  weight?: Int
+  weight_not?: Int
+  weight_in?: Int[] | Int
+  weight_not_in?: Int[] | Int
+  weight_lt?: Int
+  weight_lte?: Int
+  weight_gt?: Int
+  weight_gte?: Int
+  sex?: String
+  sex_not?: String
+  sex_in?: String[] | String
+  sex_not_in?: String[] | String
+  sex_lt?: String
+  sex_lte?: String
+  sex_gt?: String
+  sex_gte?: String
+  sex_contains?: String
+  sex_not_contains?: String
+  sex_starts_with?: String
+  sex_not_starts_with?: String
+  sex_ends_with?: String
+  sex_not_ends_with?: String
   user?: UserWhereInput
 }
 
-export interface UserUpdateOneWithoutDateGuessInput {
-  create?: UserCreateWithoutDateGuessInput
+export interface UserUpdateOneWithoutGuessInput {
+  create?: UserCreateWithoutGuessInput
   connect?: UserWhereUniqueInput
   disconnect?: Boolean
   delete?: Boolean
-  update?: UserUpdateWithoutDateGuessDataInput
-  upsert?: UserUpsertWithoutDateGuessInput
+  update?: UserUpdateWithoutGuessDataInput
+  upsert?: UserUpsertWithoutGuessInput
 }
 
 export interface UserWhereUniqueInput {
@@ -1245,7 +1357,7 @@ export interface UserWhereUniqueInput {
   email?: String
 }
 
-export interface UserUpdateWithoutDateGuessDataInput {
+export interface UserUpdateWithoutGuessDataInput {
   name?: String
   email?: String
 }
@@ -1269,16 +1381,20 @@ export interface Node {
   id: ID_Output
 }
 
-export interface DateGuessPreviousValues {
+export interface GuessPreviousValues {
   id: ID_Output
   createdAt: DateTime
   date: String
+  weight?: Int
+  sex: String
 }
 
-export interface DateGuess extends Node {
+export interface Guess extends Node {
   id: ID_Output
   createdAt: DateTime
   date: String
+  weight?: Int
+  sex: String
   user?: User
 }
 
@@ -1297,12 +1413,12 @@ export interface BatchPayload {
  * An edge in a connection.
 
  */
-export interface DateGuessEdge {
-  node: DateGuess
+export interface GuessEdge {
+  node: Guess
   cursor: String
 }
 
-export interface AggregateDateGuess {
+export interface AggregateGuess {
   count: Int
 }
 
@@ -1317,10 +1433,10 @@ export interface UserSubscriptionPayload {
  * A connection to a list of items.
 
  */
-export interface DateGuessConnection {
+export interface GuessConnection {
   pageInfo: PageInfo
-  edges: DateGuessEdge[]
-  aggregate: AggregateDateGuess
+  edges: GuessEdge[]
+  aggregate: AggregateGuess
 }
 
 export interface AggregateUser {
@@ -1377,7 +1493,7 @@ export interface User extends Node {
   createdAt: DateTime
   name: String
   email: String
-  dateGuess?: DateGuess
+  guess?: Guess
 }
 
 /*
@@ -1409,11 +1525,11 @@ export interface UserConnection {
   aggregate: AggregateUser
 }
 
-export interface DateGuessSubscriptionPayload {
+export interface GuessSubscriptionPayload {
   mutation: MutationType
-  node?: DateGuess
+  node?: Guess
   updatedFields?: String[]
-  previousValues?: DateGuessPreviousValues
+  previousValues?: GuessPreviousValues
 }
 
 /*

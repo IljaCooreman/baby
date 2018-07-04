@@ -1,6 +1,5 @@
 import * as React from 'react'
-import CreateUser from './createGuess/CreateUser';
-import CreateGuessContainer from './createGuess/CreateGuessContainer';
+import CreateGuessContainer from '../createGuess/CreateGuessContainer';
 import { Route } from 'react-router-dom';
 
 interface IMatchObject {
@@ -14,7 +13,6 @@ export default class NewGuess extends React.Component<{ match: IMatchObject }, a
   public render() {
     return ([
       <Route key='1' exact={true} path={`${this.props.match.path}/`} component={CreateGuessContainer} />,
-      <Route key='2' path={`${this.props.match.path}/register`} component={CreateUser} />
     ])
   }
 }

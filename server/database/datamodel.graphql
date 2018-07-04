@@ -10,12 +10,14 @@ type User {
   createdAt: DateTime!
   name: String! @unique
   email: String! @unique
-  dateGuess: DateGuess
+  guess: Guess
 }
 
-type DateGuess {
+type Guess {
   id: ID! @unique
   createdAt: DateTime!
   date: String!
+  weight: Int
+  sex: String!
   user: User
 }

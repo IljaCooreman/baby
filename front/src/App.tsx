@@ -13,8 +13,8 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom'
-import GuessFlow from './components/GuessFlow';
 import LandingPage from './components/LandingPage';
+import CreateGuessContainer from './components/createGuess/CreateGuessContainer';
 
 
 const AppDiv = styled('div')`
@@ -51,7 +51,7 @@ class App extends React.Component {
 
             <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
-            <Route path="/guess" component={GuessFlow} />
+            <Route path="/guess" component={CreateGuessContainer} />
           </AppDiv>
         </Router>
       </ApolloProvider>
