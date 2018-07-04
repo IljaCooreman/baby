@@ -21,6 +21,7 @@ const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, bi
       background: #67D0DC;
       min-width: 140px;
       border-radius: 48px;
+      border: none;
       font-family: Roboto-Medium;
       font-size: 25px;
       padding: ${big ? 14 : 5}px 20px;

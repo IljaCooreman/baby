@@ -8,18 +8,16 @@ import styled from 'react-emotion';
 // import gql from "graphql-tag";
 import { config } from './config';
 import UserList from './components/UserList';
+import Background from './components/Background';
 import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom'
 import GuessFlow from './components/GuessFlow';
-// import SexToggle from './components/SexToggle';
+import LandingPage from './components/LandingPage';
 
 
 const AppDiv = styled('div')`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
 `;
 
 const client = new ApolloClient({
@@ -49,8 +47,9 @@ class App extends React.Component {
       <ApolloProvider client={client}>
         <Router>
           <AppDiv className="App">
-            {/* <SexToggle /> */}
-            <Route exact={true} path="/" component={UserList} />
+            <Background />
+
+            <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
             <Route path="/guess" component={GuessFlow} />
           </AppDiv>
