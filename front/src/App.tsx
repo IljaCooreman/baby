@@ -4,6 +4,7 @@ import './App.css';
 
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
+import styled from 'react-emotion';
 // import gql from "graphql-tag";
 import { config } from './config';
 import UserList from './components/UserList';
@@ -13,6 +14,13 @@ import {
 } from 'react-router-dom'
 import GuessFlow from './components/GuessFlow';
 // import SexToggle from './components/SexToggle';
+
+
+const AppDiv = styled('div')`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+`;
 
 const client = new ApolloClient({
   uri: `${config.uri}:${config.port}/`
@@ -40,12 +48,12 @@ class App extends React.Component {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div className="App">
+          <AppDiv className="App">
             {/* <SexToggle /> */}
             <Route exact={true} path="/" component={UserList} />
             <Route path="/userlist" component={UserList} />
             <Route path="/guess" component={GuessFlow} />
-          </div>
+          </AppDiv>
         </Router>
       </ApolloProvider>
     );

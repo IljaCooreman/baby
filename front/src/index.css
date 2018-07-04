@@ -1,6 +1,28 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  background: #FAF9FF;
+  /* background: #F4E9EF; */
+  background: #8468FF;
+  font-family: 'Roboto', sans-serif;
+  font-family: Roboto;
+font-weight: 300;
+font-size: 13px;
+color: #7F7E82;
+}
+
+h2 {
+font-family: Roboto;
+text-align: left;
+font-weight: 400;
+font-size: 25px;
+color: #66646B;
+margin-bottom: 10px;
+}
+
+p {
+font-family: Roboto;
+font-weight: 300;
+font-size: 14px;
+color: #7F7E82;
+text-align: left;
 }
