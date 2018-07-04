@@ -1,5 +1,5 @@
 import * as React from 'react'
-import CreateUser from './CreateUser';
+import CreateUser from './createGuess/CreateUser';
 import CreateGuessContainer from './createGuess/CreateGuessContainer';
 import { Route } from 'react-router-dom';
 

@@ -1,60 +1,31 @@
 import * as React from 'react';
 import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
 import SexToggle from './SexToggle';
-import styled, { css } from 'react-emotion';
 import Button from '../Button';
-
-const labelContainerStyles = css`
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  margin-bottom: 50px;
-`;
-
-const FixedSpan = styled('span')`
-  position: relative;
-  min-height: 20px;
-  color: #F160AD;
-`;
+import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 
 
-const Input = styled('input')(`
-background: white;
-min-height: 42px;
-width: 126px;
-text-align: center;
-max-width: 400px;
-border: 2px solid #67D0DC;
-border-radius: 21px;
-padding: 0 21px;
-margin: 10px auto;
-width: 100%;
-justify-self: center;
-`, ({ error }: { error?: boolean }) => ({
-    border: `2px solid ${error ? '#F160AD' : '#67D0DC'}`,
-  }))
-  ;
 
-
-interface IFormValues {
+export interface IFormValues {
   weight: number,
-  sex?: "m" | "f",
-  birthDate?: Date
+  sex?: string,
+  birthDate: Date,
 }
 
-interface ICreateUserFormProps {
-  createGuess: (variables: object) => void,
+interface ICreateGuessProps {
+  handleSubmitClick: (variables: object) => void,
   data?: any,
   loading?: boolean,
   error?: any,
 }
 
 
-const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createGuess, data, error, loading }) => {
+const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, loading }) => {
   return (
     <Formik
       initialValues={{
         birthDate: new Date(),
+        sex: '',
         weight: 2500,
       }}
       validate={
@@ -66,6 +37,9 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createGuess, data, er
             errors.weight = 'Dat krijgt Roxanne er nooit uitgeperst';
           if (values.weight < 200)
             errors.weight = 'Dit is niet levensvatbaar';
+
+          // if (!values.sex)
+          //   errors.sex = 'Kies een geslacht';
           // else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
           //   errors.email = 'Dit lijkt niet op een email adres ;)';
           // ;
@@ -76,7 +50,7 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createGuess, data, er
           return errors;
         }
       }
-      onSubmit={(values: IFormValues) => createGuess({ variables: values })}
+      onSubmit={(values: IFormValues) => handleSubmitClick({ variables: values })}
       render={({ errors, values }: FormikProps<IFormValues>) => (
         <Form>
           <h2>Geslacht</h2>
@@ -127,8 +101,10 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createGuess, data, er
             text='volgende'
             loading={loading ? true : false}
             disabled={
+              !values.birthDate ||
               errors.birthDate ||
-              !values.birthDate
+              !values.sex ||
+              errors.weight
             }
           />
         </Form>
@@ -137,4 +113,4 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createGuess, data, er
   );
 };
 
-export default CreateUserForm;
+export default CreateGuess;

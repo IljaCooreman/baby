@@ -2,7 +2,7 @@ import * as React from 'react';
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import CreateUserForm from './CreateUserForm';
-import Modal from './Modal';
+import Modal from '../Modal';
 // import Button from './Button';
 
 interface ICreateUserState {

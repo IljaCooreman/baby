@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
+import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 // import { Link } from 'react-router-dom';
-import Button from './Button';
+import Button from '../Button';
 interface IFormValues {
   email?: string,
   name?: string,
@@ -47,22 +48,30 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createUser, data, err
           <Field
             name="name"
             render={({ field, form }: FieldProps<IFormValues>) => (
-              <div>
-                <input type="text" {...field} placeholder="name" />
-                {form.touched.name &&
-                  form.errors.name &&
-                  form.errors.name}
+              <div className={labelContainerStyles}>
+                <h2>Naam</h2>
+                <p>Gewoon, uw naam. Weet je die nog?</p>
+                <Input type="text" {...field} placeholder="name" error={form.errors.name} />
+                <FixedSpan>
+                  {form.touched.name &&
+                    form.errors.name &&
+                    form.errors.name}
+                </FixedSpan>
               </div>
             )}
           />
           <Field
             name="email"
             render={({ field, form }: FieldProps<IFormValues>) => (
-              <div>
-                <input type="text" {...field} placeholder="email" />
-                {form.touched.email &&
-                  form.errors.email &&
-                  form.errors.email}
+              <div className={labelContainerStyles}>
+                <h2>Email</h2>
+                <p>Wij zijn 100% GDPR compliant! haha, mopje.</p>
+                <Input type="text" {...field} placeholder="email" error={form.errors.email} />
+                <FixedSpan>
+                  {form.touched.email &&
+                    form.errors.email &&
+                    form.errors.email}
+                </FixedSpan>
               </div>
             )}
           />
