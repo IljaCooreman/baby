@@ -93,10 +93,10 @@ scalar DateTime
 type Guess implements Node {
   id: ID!
   createdAt: DateTime!
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
-  user(where: UserWhereInput): User
+  user(where: UserWhereInput): User!
 }
 
 """A connection to a list of items."""
@@ -110,10 +110,10 @@ type GuessConnection {
 }
 
 input GuessCreateInput {
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
-  user: UserCreateOneWithoutGuessInput
+  user: UserCreateOneWithoutGuessInput!
 }
 
 input GuessCreateOneWithoutUserInput {
@@ -122,7 +122,7 @@ input GuessCreateOneWithoutUserInput {
 }
 
 input GuessCreateWithoutUserInput {
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
 }
@@ -141,8 +141,8 @@ enum GuessOrderByInput {
   id_DESC
   createdAt_ASC
   createdAt_DESC
-  date_ASC
-  date_DESC
+  birthDate_ASC
+  birthDate_DESC
   weight_ASC
   weight_DESC
   sex_ASC
@@ -154,7 +154,7 @@ enum GuessOrderByInput {
 type GuessPreviousValues {
   id: ID!
   createdAt: DateTime!
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
 }
@@ -199,7 +199,7 @@ input GuessSubscriptionWhereInput {
 }
 
 input GuessUpdateInput {
-  date: String
+  birthDate: String
   weight: Int
   sex: String
   user: UserUpdateOneWithoutGuessInput
@@ -215,7 +215,7 @@ input GuessUpdateOneWithoutUserInput {
 }
 
 input GuessUpdateWithoutUserDataInput {
-  date: String
+  birthDate: String
   weight: Int
   sex: String
 }
@@ -296,46 +296,46 @@ input GuessWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
-  date: String
+  birthDate: String
 
   """All values that are not equal to given value."""
-  date_not: String
+  birthDate_not: String
 
   """All values that are contained in given list."""
-  date_in: [String!]
+  birthDate_in: [String!]
 
   """All values that are not contained in given list."""
-  date_not_in: [String!]
+  birthDate_not_in: [String!]
 
   """All values less than the given value."""
-  date_lt: String
+  birthDate_lt: String
 
   """All values less than or equal the given value."""
-  date_lte: String
+  birthDate_lte: String
 
   """All values greater than the given value."""
-  date_gt: String
+  birthDate_gt: String
 
   """All values greater than or equal the given value."""
-  date_gte: String
+  birthDate_gte: String
 
   """All values containing the given string."""
-  date_contains: String
+  birthDate_contains: String
 
   """All values not containing the given string."""
-  date_not_contains: String
+  birthDate_not_contains: String
 
   """All values starting with the given string."""
-  date_starts_with: String
+  birthDate_starts_with: String
 
   """All values not starting with the given string."""
-  date_not_starts_with: String
+  birthDate_not_starts_with: String
 
   """All values ending with the given string."""
-  date_ends_with: String
+  birthDate_ends_with: String
 
   """All values not ending with the given string."""
-  date_not_ends_with: String
+  birthDate_not_ends_with: String
   weight: Int
 
   """All values that are not equal to given value."""
@@ -832,7 +832,6 @@ input UserUpdateInput {
 input UserUpdateOneWithoutGuessInput {
   create: UserCreateWithoutGuessInput
   connect: UserWhereUniqueInput
-  disconnect: Boolean
   delete: Boolean
   update: UserUpdateWithoutGuessDataInput
   upsert: UserUpsertWithoutGuessInput
@@ -1043,8 +1042,8 @@ export type GuessOrderByInput =   'id_ASC' |
   'id_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
-  'date_ASC' |
-  'date_DESC' |
+  'birthDate_ASC' |
+  'birthDate_DESC' |
   'weight_ASC' |
   'weight_DESC' |
   'sex_ASC' |
@@ -1113,7 +1112,7 @@ export interface PostWhereInput {
 }
 
 export interface GuessUpdateInput {
-  date?: String
+  birthDate?: String
   weight?: Int
   sex?: String
   user?: UserUpdateOneWithoutGuessInput
@@ -1130,13 +1129,13 @@ export interface GuessUpsertWithoutUserInput {
 }
 
 export interface GuessCreateWithoutUserInput {
-  date: String
+  birthDate: String
   weight?: Int
   sex: String
 }
 
 export interface GuessUpdateWithoutUserDataInput {
-  date?: String
+  birthDate?: String
   weight?: Int
   sex?: String
 }
@@ -1266,10 +1265,10 @@ export interface UserCreateInput {
 }
 
 export interface GuessCreateInput {
-  date: String
+  birthDate: String
   weight?: Int
   sex: String
-  user?: UserCreateOneWithoutGuessInput
+  user: UserCreateOneWithoutGuessInput
 }
 
 export interface UserCreateOneWithoutGuessInput {
@@ -1303,20 +1302,20 @@ export interface GuessWhereInput {
   createdAt_lte?: DateTime
   createdAt_gt?: DateTime
   createdAt_gte?: DateTime
-  date?: String
-  date_not?: String
-  date_in?: String[] | String
-  date_not_in?: String[] | String
-  date_lt?: String
-  date_lte?: String
-  date_gt?: String
-  date_gte?: String
-  date_contains?: String
-  date_not_contains?: String
-  date_starts_with?: String
-  date_not_starts_with?: String
-  date_ends_with?: String
-  date_not_ends_with?: String
+  birthDate?: String
+  birthDate_not?: String
+  birthDate_in?: String[] | String
+  birthDate_not_in?: String[] | String
+  birthDate_lt?: String
+  birthDate_lte?: String
+  birthDate_gt?: String
+  birthDate_gte?: String
+  birthDate_contains?: String
+  birthDate_not_contains?: String
+  birthDate_starts_with?: String
+  birthDate_not_starts_with?: String
+  birthDate_ends_with?: String
+  birthDate_not_ends_with?: String
   weight?: Int
   weight_not?: Int
   weight_in?: Int[] | Int
@@ -1345,7 +1344,6 @@ export interface GuessWhereInput {
 export interface UserUpdateOneWithoutGuessInput {
   create?: UserCreateWithoutGuessInput
   connect?: UserWhereUniqueInput
-  disconnect?: Boolean
   delete?: Boolean
   update?: UserUpdateWithoutGuessDataInput
   upsert?: UserUpsertWithoutGuessInput
@@ -1384,7 +1382,7 @@ export interface Node {
 export interface GuessPreviousValues {
   id: ID_Output
   createdAt: DateTime
-  date: String
+  birthDate: String
   weight?: Int
   sex: String
 }
@@ -1392,10 +1390,10 @@ export interface GuessPreviousValues {
 export interface Guess extends Node {
   id: ID_Output
   createdAt: DateTime
-  date: String
+  birthDate: String
   weight?: Int
   sex: String
-  user?: User
+  user: User
 }
 
 export interface Post extends Node {

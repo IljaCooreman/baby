@@ -1,12 +1,15 @@
 # import Post from "./generated/prisma.graphql"
 # import User from "./generated/prisma.graphql"
+# import Guess from "./generated/prisma.graphql"
 
 type Query {
   users: [User!]!
   user(id: ID!): User
+  guesses: [Guess!]!
 }
 
 type Mutation {
   createUser(name: String!, email: String!): User
-  guessDate(userId: ID!, date: String!): User
+  createGuess(userId: ID!, birthDate: String!, weight: Int, sex: String!): Guess
+  createUserAndGuess(name: String!, email: String!, birthDate: String!, weight: Int, sex: String!): Guess
 }

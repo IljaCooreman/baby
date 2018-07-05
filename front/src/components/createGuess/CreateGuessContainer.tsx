@@ -9,14 +9,20 @@ import CreateUserForm from './CreateUserForm';
 
 interface ICreateuserState {
   stage: number,
-  values?: IFormValues,
+  variables?: IFormValues,
 }
 
-const CREATE_GUESS = gql`
-  mutation createUser($name: String!, $email: String!) {
-    createUser(name: $name, email: $email) {
+const CREATE_USER_AND_GUESS = gql`
+  mutation createUserAndGuess($name: String!, $email: String!, $birthDate: String!, $weight: Int, $sex: String!) {
+    createUserAndGuess(name: $name, email: $email, sex: $sex, birthDate: $birthDate, weight: $weight) {
       id
-      name
+      user {
+        name
+        email
+      }
+      weight
+      birthDate
+      sex
     }
   }
 `;
@@ -31,10 +37,10 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
     this.goToRegister = this.goToRegister.bind(this);
   }
 
-  public goToRegister(values) {
+  public goToRegister({ variables }) {
     this.setState({
       stage: 2,
-      values,
+      variables,
     })
   }
   public render() {
@@ -48,15 +54,16 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
 
     return (
       <Modal>
-        <Mutation mutation={CREATE_GUESS}>
-          {(createUser, { data, error, loading }) => {
-            if (data) return <h2>merci voor de input. Wij registreren deze dinges: {JSON.stringify(data)}</h2>
+        <Mutation mutation={CREATE_USER_AND_GUESS}>
+          {(createUserAndGuess, { data, error, loading }) => {
+            if (data) return <div><h2>merci voor de input.</h2> <p>Wij registreerden het volgende:</p> <p>{JSON.stringify(data)}</p><p>Ziet er dus goed uit!</p></div>
+            const handleSubmit = (userValues) => {
+              console.log({ variables: { ...userValues, ...this.state.variables } })
+              createUserAndGuess({ variables: { ...userValues, ...this.state.variables } })
+            }
 
-            // return ([
-            //   <CreateGuess key="component" handleSubmitClick={createGuess} error={error} loading={loading} />
-            // ]);
             return (
-              <CreateUserForm createUser={createUser} error={error} loading={loading} />
+              <CreateUserForm handleSubmit={handleSubmit} error={error} loading={loading} />
             )
           }}
         </Mutation>

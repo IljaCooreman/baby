@@ -9,14 +9,14 @@ interface IFormValues {
 }
 
 interface ICreateUserFormProps {
-  createUser: (variables: object) => void,
+  handleSubmit: (variables: object) => void,
   data?: any,
   loading?: boolean,
   error?: any,
 }
 
 
-const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createUser, data, error, loading }) => {
+const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ handleSubmit, data, error, loading }) => {
 
   console.log(data, error, loading)
   // if (error) console.log(error.message)
@@ -41,10 +41,9 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ createUser, data, err
           return errors;
         }
       }
-      onSubmit={(values: IFormValues) => createUser({ variables: values })}
+      onSubmit={(values: IFormValues) => handleSubmit(values)}
       render={({ errors, values }: FormikProps<IFormValues>) => (
         <Form>
-          {console.log(errors)}
           <Field
             name="name"
             render={({ field, form }: FieldProps<IFormValues>) => (

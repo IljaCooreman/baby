@@ -10,7 +10,10 @@ const resolvers = {
     },
     users(parent, args, context: Context, info) {
       return context.db.query.users({}, info)
-    }
+    },
+    guesses(parent, args, context: Context, info) {
+      return context.db.query.guesses({}, info)
+    },
   },
   Mutation: {
     // createDraft(parent, { title, text }, context: Context, info) {
@@ -31,30 +34,43 @@ const resolvers = {
     //     info,
     //   )
     // },
-    async createUser(parent, { name, email }, context: Context, info) {
-      const promise = await new Promise((resolve, reject) => {
-        const wait = setTimeout(() => {
-          clearTimeout(wait);
-          resolve('resolved this, bitch');
-        }, 1000)
-      })
+    createUser(parent, { name, email }, context: Context, info) {
       return context.db.mutation.createUser(
         { data: { name, email } },
         info,
       )
     },
-    async guessDate(parent, { userId, date }, context: Context, info) {
-      const queryResult = await context.db.mutation.createDateGuess({
+    createGuess(parent, { userId, birthDate, weight, sex }, context: Context, info) {
+      return context.db.mutation.createGuess({
         data: {
-          date, user: {
+          birthDate,
+          weight,
+          sex,
+          user: {
             connect: {
               id: userId,
             }
           }
         }
       }, info);
-      console.log('#####', queryResult);
-      return queryResult
+    },
+    async createUserAndGuess(parent, { birthDate, weight, sex, name, email }, context: Context, info) {
+      const createUser = await context.db.mutation.createUser(
+        { data: { name, email } },
+        info,
+      )
+      return context.db.mutation.createGuess({
+        data: {
+          birthDate,
+          weight,
+          sex,
+          user: {
+            connect: {
+              id: createUser.id,
+            }
+          }
+        }
+      }, info);
     },
   },
 }

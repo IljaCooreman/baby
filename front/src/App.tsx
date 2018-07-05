@@ -15,6 +15,7 @@ import {
 } from 'react-router-dom'
 import LandingPage from './components/LandingPage';
 import CreateGuessContainer from './components/createGuess/CreateGuessContainer';
+import GuessesList from './components/GuessesList';
 
 
 const AppDiv = styled('div')`
@@ -52,6 +53,7 @@ class App extends React.Component {
             <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
             <Route path="/guess" component={CreateGuessContainer} />
+            <Route path="/guess/results" component={GuessesList} />
           </AppDiv>
         </Router>
       </ApolloProvider>

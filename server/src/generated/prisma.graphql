@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/public-dandypegasus-221/server/dev
-# timestamp: Wed Jul 04 2018 17:03:06 GMT+0200 (CEST)
+# timestamp: Thu Jul 05 2018 10:33:06 GMT+0200 (CEST)
 
 type AggregateGuess {
   count: Int!
@@ -23,10 +23,10 @@ scalar DateTime
 type Guess implements Node {
   id: ID!
   createdAt: DateTime!
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
-  user(where: UserWhereInput): User
+  user(where: UserWhereInput): User!
 }
 
 """A connection to a list of items."""
@@ -40,10 +40,10 @@ type GuessConnection {
 }
 
 input GuessCreateInput {
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
-  user: UserCreateOneWithoutGuessInput
+  user: UserCreateOneWithoutGuessInput!
 }
 
 input GuessCreateOneWithoutUserInput {
@@ -52,7 +52,7 @@ input GuessCreateOneWithoutUserInput {
 }
 
 input GuessCreateWithoutUserInput {
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
 }
@@ -71,8 +71,8 @@ enum GuessOrderByInput {
   id_DESC
   createdAt_ASC
   createdAt_DESC
-  date_ASC
-  date_DESC
+  birthDate_ASC
+  birthDate_DESC
   weight_ASC
   weight_DESC
   sex_ASC
@@ -84,7 +84,7 @@ enum GuessOrderByInput {
 type GuessPreviousValues {
   id: ID!
   createdAt: DateTime!
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
 }
@@ -129,7 +129,7 @@ input GuessSubscriptionWhereInput {
 }
 
 input GuessUpdateInput {
-  date: String
+  birthDate: String
   weight: Int
   sex: String
   user: UserUpdateOneWithoutGuessInput
@@ -145,7 +145,7 @@ input GuessUpdateOneWithoutUserInput {
 }
 
 input GuessUpdateWithoutUserDataInput {
-  date: String
+  birthDate: String
   weight: Int
   sex: String
 }
@@ -226,46 +226,46 @@ input GuessWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
-  date: String
+  birthDate: String
 
   """All values that are not equal to given value."""
-  date_not: String
+  birthDate_not: String
 
   """All values that are contained in given list."""
-  date_in: [String!]
+  birthDate_in: [String!]
 
   """All values that are not contained in given list."""
-  date_not_in: [String!]
+  birthDate_not_in: [String!]
 
   """All values less than the given value."""
-  date_lt: String
+  birthDate_lt: String
 
   """All values less than or equal the given value."""
-  date_lte: String
+  birthDate_lte: String
 
   """All values greater than the given value."""
-  date_gt: String
+  birthDate_gt: String
 
   """All values greater than or equal the given value."""
-  date_gte: String
+  birthDate_gte: String
 
   """All values containing the given string."""
-  date_contains: String
+  birthDate_contains: String
 
   """All values not containing the given string."""
-  date_not_contains: String
+  birthDate_not_contains: String
 
   """All values starting with the given string."""
-  date_starts_with: String
+  birthDate_starts_with: String
 
   """All values not starting with the given string."""
-  date_not_starts_with: String
+  birthDate_not_starts_with: String
 
   """All values ending with the given string."""
-  date_ends_with: String
+  birthDate_ends_with: String
 
   """All values not ending with the given string."""
-  date_not_ends_with: String
+  birthDate_not_ends_with: String
   weight: Int
 
   """All values that are not equal to given value."""
@@ -762,7 +762,6 @@ input UserUpdateInput {
 input UserUpdateOneWithoutGuessInput {
   create: UserCreateWithoutGuessInput
   connect: UserWhereUniqueInput
-  disconnect: Boolean
   delete: Boolean
   update: UserUpdateWithoutGuessDataInput
   upsert: UserUpsertWithoutGuessInput

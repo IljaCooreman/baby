@@ -16,8 +16,8 @@ type User {
 type Guess {
   id: ID! @unique
   createdAt: DateTime!
-  date: String!
+  birthDate: String!
   weight: Int
   sex: String!
-  user: User
+  user: User!
 }
