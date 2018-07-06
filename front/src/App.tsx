@@ -52,7 +52,7 @@ class App extends React.Component {
 
             <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
-            <Route path="/guess" component={CreateGuessContainer} />
+            <Route path="/guess/form" component={CreateGuessContainer} />
             <Route path="/guess/results" component={GuessesList} />
           </AppDiv>
         </Router>

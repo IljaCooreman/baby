@@ -12,21 +12,20 @@ const containerStyles = css`
   padding: 20px;
   height: 240px;
   width: 400px;
-  left: calc(50% - 220px);
 `;
 const Circle = styled('div')(`
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  mix-blend-mode: multiply;
+  mix-blend-mode: lighten;
   transition: all .3s cubic-bezier(0.51,-0.41, 0.47, 2.15);
   cursor: pointer;
   overflow-x: hidden;
 `, ({ active }: { active: boolean }) => ({
     boxShadow: active ? '0 0 10px 0 rgba(0, 0, 0, 0.18)' : 'none',
     height: active ? '200px' : '160px',
-    opacity: active ? 1 : .5,
+    opacity: active ? 1 : .8,
     width: active ? '200px' : '160px',
   }));
 

@@ -5,7 +5,8 @@ body {
   font-family: Roboto;
 font-weight: 300;
 font-size: 13px;
-color: #7F7E82;
+background: #236298;
+color:rgba(255,255,255,.7);
 }
 
 h2 {
@@ -13,7 +14,7 @@ font-family: Roboto;
 text-align: left;
 font-weight: 400;
 font-size: 25px;
-color: #66646B;
+color: rgba(255,255,255,.9);
 margin-bottom: 10px;
 }
 
@@ -21,6 +22,6 @@ p {
 font-family: Roboto;
 font-weight: 300;
 font-size: 14px;
-color: #7F7E82;
+color: rgba(255,255,255,.8);
 text-align: left;
 }

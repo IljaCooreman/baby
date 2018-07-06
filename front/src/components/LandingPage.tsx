@@ -24,7 +24,7 @@ const LandingPage: React.SFC<{}> = () => {
       <HalfScreen>
         <h2>The guessing game</h2>
         <p>Hier kan je voorspellen wanneer de baby geboren wordt, …</p>
-        <Link to={'/guess'}>
+        <Link to={'/guess/form'}>
           <Button text={'Waag je gok'} big={true} />
         </Link>
         <Link to={'/guess/results'}>
@@ -34,7 +34,7 @@ const LandingPage: React.SFC<{}> = () => {
       <HalfScreen lighter={true}>
         <h2>The naming game</h2>
         <p>Help ons een mooie naam bedenken!</p>
-        <Link to={'/guess'}>
+        <Link to={'/'}>
           <Button text={'Under construction'} big={true} disabled={true} />
         </Link>
         <Link to={'/guess/results'}>

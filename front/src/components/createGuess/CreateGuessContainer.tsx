@@ -54,7 +54,16 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
 
     return (
       <Modal>
-        <Mutation mutation={CREATE_USER_AND_GUESS}>
+        <Mutation
+          mutation={CREATE_USER_AND_GUESS}
+        // update={(cache, { data: { addTodo } }) => {
+        //   const data = cache.readQuery({query: CREATE_USER_AND_GUESS});
+        //   cache.writeQuery({
+        //     data: { todos: [...data.guesses, ... },
+        //     query: CREATE_USER_AND_GUESS,
+        //   });
+        // }}
+        >
           {(createUserAndGuess, { data, error, loading }) => {
             if (data) return <div><h2>merci voor de input.</h2> <p>Wij registreerden het volgende:</p> <p>{JSON.stringify(data)}</p><p>Ziet er dus goed uit!</p></div>
             const handleSubmit = (userValues) => {

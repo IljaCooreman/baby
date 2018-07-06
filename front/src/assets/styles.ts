@@ -3,20 +3,21 @@ import styled, { css } from "react-emotion";
 
 export const Input = styled('input')(`
 background: white;
-min-height: 42px;
-width: 126px;
+min-height: 50px;
 text-align: center;
-max-width: 400px;
 border: 2px solid #67D0DC;
-border-radius: 21px;
+border-radius: 25px;
 padding: 0 21px;
 margin: 10px auto;
 width: 100%;
+max-width: 300px;
 justify-self: center;
+background: rgba(255,255,255,.9);
 `, ({ error }: { error?: boolean }) => ({
+    background: error ? 'rgba(246,99,173,.9)' : 'rgba(255,255,255,.9)',
     border: `2px solid ${error ? '#F160AD' : '#67D0DC'}`,
-  }))
-  ;
+  })
+);
 
 export const FixedSpan = styled('span')`
   position: relative;
@@ -29,5 +30,6 @@ export const labelContainerStyles = css`
   display: flex;
   flex-flow: column;
   margin-bottom: 50px;
+  align-items: center;
 `;
 
