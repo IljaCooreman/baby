@@ -25,3 +25,16 @@ font-size: 14px;
 color: rgba(255,255,255,.8);
 text-align: left;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+font-weight: 300;
+font-size: 14px;
+color: rgba(93,226,249,.8);
+text-align: left;
+text-decoration: none;
+}

@@ -2,7 +2,15 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 
-import styled from 'react-emotion';
+import styled, { css } from 'react-emotion';
+
+const P = styled('p')`
+  margin: 4px 0 0 0;
+`;
+
+const buttonMargins = css(`
+          margin: 44px 0 20px;
+        `);
 
 const HalfScreen = styled('div')(`
   height: 50vh;
@@ -23,8 +31,8 @@ const LandingPage: React.SFC<{}> = () => {
     <div>
       <HalfScreen>
         <h2>The guessing game</h2>
-        <p>Hier kan je voorspellen wanneer de baby geboren wordt, …</p>
-        <Link to={'/guess/form'}>
+        <P>Hier kan je voorspellen wanneer de baby geboren wordt, …</P>
+        <Link to={'/guess/form'} className={buttonMargins}>
           <Button text={'Waag je gok'} big={true} />
         </Link>
         <Link to={'/guess/results'}>
@@ -33,8 +41,8 @@ const LandingPage: React.SFC<{}> = () => {
       </HalfScreen>
       <HalfScreen lighter={true}>
         <h2>The naming game</h2>
-        <p>Help ons een mooie naam bedenken!</p>
-        <Link to={'/'}>
+        <P>Help ons een mooie naam bedenken!</P>
+        <Link to={'/'} className={buttonMargins}>
           <Button text={'Under construction'} big={true} disabled={true} />
         </Link>
         <Link to={'/guess/results'}>

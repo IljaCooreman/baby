@@ -3,13 +3,14 @@ import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
 import SexToggle from './SexToggle';
 import Button from '../Button';
 import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
+import * as moment from 'moment';
 
 
 
 export interface IFormValues {
   weight: number,
   sex?: string,
-  birthDate: Date,
+  birthDate: string,
 }
 
 interface ICreateGuessProps {
@@ -24,7 +25,7 @@ const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, l
   return (
     <Formik
       initialValues={{
-        birthDate: new Date(),
+        birthDate: moment('17/01/2019', 'DD/MM/YYYY').format('YYYY-MM-DD'),
         sex: '',
         weight: 2500,
       }}
