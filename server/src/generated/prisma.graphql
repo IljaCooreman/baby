@@ -1,7 +1,11 @@
 # source: https://eu1.prisma.sh/public-dandypegasus-221/server/dev
-# timestamp: Thu Jul 05 2018 10:33:06 GMT+0200 (CEST)
+# timestamp: Fri Jul 06 2018 17:44:41 GMT+0200 (CEST)
 
 type AggregateGuess {
+  count: Int!
+}
+
+type AggregateName {
   count: Int!
 }
 
@@ -343,29 +347,334 @@ scalar Long
 
 type Mutation {
   createPost(data: PostCreateInput!): Post!
-  createUser(data: UserCreateInput!): User!
   createGuess(data: GuessCreateInput!): Guess!
+  createName(data: NameCreateInput!): Name!
+  createUser(data: UserCreateInput!): User!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateGuess(data: GuessUpdateInput!, where: GuessWhereUniqueInput!): Guess
+  updateName(data: NameUpdateInput!, where: NameWhereUniqueInput!): Name
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
-  deleteUser(where: UserWhereUniqueInput!): User
   deleteGuess(where: GuessWhereUniqueInput!): Guess
+  deleteName(where: NameWhereUniqueInput!): Name
+  deleteUser(where: UserWhereUniqueInput!): User
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertGuess(where: GuessWhereUniqueInput!, create: GuessCreateInput!, update: GuessUpdateInput!): Guess!
+  upsertName(where: NameWhereUniqueInput!, create: NameCreateInput!, update: NameUpdateInput!): Name!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyGuesses(data: GuessUpdateInput!, where: GuessWhereInput): BatchPayload!
+  updateManyNames(data: NameUpdateInput!, where: NameWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyGuesses(where: GuessWhereInput): BatchPayload!
+  deleteManyNames(where: NameWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
   CREATED
   UPDATED
   DELETED
+}
+
+type Name implements Node {
+  id: ID!
+  creator(where: UserWhereInput): User
+  name: String!
+  votes: Int
+  duels: Int
+  stability: Float
+  score: Float
+}
+
+"""A connection to a list of items."""
+type NameConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [NameEdge]!
+  aggregate: AggregateName!
+}
+
+input NameCreateInput {
+  name: String!
+  votes: Int
+  duels: Int
+  stability: Float
+  score: Float
+  creator: UserCreateOneInput
+}
+
+"""An edge in a connection."""
+type NameEdge {
+  """The item at the end of the edge."""
+  node: Name!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum NameOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  votes_ASC
+  votes_DESC
+  duels_ASC
+  duels_DESC
+  stability_ASC
+  stability_DESC
+  score_ASC
+  score_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type NamePreviousValues {
+  id: ID!
+  name: String!
+  votes: Int
+  duels: Int
+  stability: Float
+  score: Float
+}
+
+type NameSubscriptionPayload {
+  mutation: MutationType!
+  node: Name
+  updatedFields: [String!]
+  previousValues: NamePreviousValues
+}
+
+input NameSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [NameSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [NameSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [NameSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: NameWhereInput
+}
+
+input NameUpdateInput {
+  name: String
+  votes: Int
+  duels: Int
+  stability: Float
+  score: Float
+  creator: UserUpdateOneInput
+}
+
+input NameWhereInput {
+  """Logical AND on all given filters."""
+  AND: [NameWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [NameWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [NameWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  votes: Int
+
+  """All values that are not equal to given value."""
+  votes_not: Int
+
+  """All values that are contained in given list."""
+  votes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  votes_not_in: [Int!]
+
+  """All values less than the given value."""
+  votes_lt: Int
+
+  """All values less than or equal the given value."""
+  votes_lte: Int
+
+  """All values greater than the given value."""
+  votes_gt: Int
+
+  """All values greater than or equal the given value."""
+  votes_gte: Int
+  duels: Int
+
+  """All values that are not equal to given value."""
+  duels_not: Int
+
+  """All values that are contained in given list."""
+  duels_in: [Int!]
+
+  """All values that are not contained in given list."""
+  duels_not_in: [Int!]
+
+  """All values less than the given value."""
+  duels_lt: Int
+
+  """All values less than or equal the given value."""
+  duels_lte: Int
+
+  """All values greater than the given value."""
+  duels_gt: Int
+
+  """All values greater than or equal the given value."""
+  duels_gte: Int
+  stability: Float
+
+  """All values that are not equal to given value."""
+  stability_not: Float
+
+  """All values that are contained in given list."""
+  stability_in: [Float!]
+
+  """All values that are not contained in given list."""
+  stability_not_in: [Float!]
+
+  """All values less than the given value."""
+  stability_lt: Float
+
+  """All values less than or equal the given value."""
+  stability_lte: Float
+
+  """All values greater than the given value."""
+  stability_gt: Float
+
+  """All values greater than or equal the given value."""
+  stability_gte: Float
+  score: Float
+
+  """All values that are not equal to given value."""
+  score_not: Float
+
+  """All values that are contained in given list."""
+  score_in: [Float!]
+
+  """All values that are not contained in given list."""
+  score_not_in: [Float!]
+
+  """All values less than the given value."""
+  score_lt: Float
+
+  """All values less than or equal the given value."""
+  score_lte: Float
+
+  """All values greater than the given value."""
+  score_gt: Float
+
+  """All values greater than or equal the given value."""
+  score_gte: Float
+  creator: UserWhereInput
+}
+
+input NameWhereUniqueInput {
+  id: ID
+  name: String
 }
 
 """An object with an ID"""
@@ -629,14 +938,17 @@ input PostWhereUniqueInput {
 
 type Query {
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   guesses(where: GuessWhereInput, orderBy: GuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Guess]!
+  names(where: NameWhereInput, orderBy: NameOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Name]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   post(where: PostWhereUniqueInput!): Post
-  user(where: UserWhereUniqueInput!): User
   guess(where: GuessWhereUniqueInput!): Guess
+  name(where: NameWhereUniqueInput!): Name
+  user(where: UserWhereUniqueInput!): User
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   guessesConnection(where: GuessWhereInput, orderBy: GuessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GuessConnection!
+  namesConnection(where: NameWhereInput, orderBy: NameOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NameConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -647,8 +959,9 @@ type Query {
 
 type Subscription {
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   guess(where: GuessSubscriptionWhereInput): GuessSubscriptionPayload
+  name(where: NameSubscriptionWhereInput): NameSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User implements Node {
@@ -673,6 +986,11 @@ input UserCreateInput {
   name: String!
   email: String!
   guess: GuessCreateOneWithoutUserInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutGuessInput {
@@ -753,10 +1071,25 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
+input UserUpdateDataInput {
+  name: String
+  email: String
+  guess: GuessUpdateOneWithoutUserInput
+}
+
 input UserUpdateInput {
   name: String
   email: String
   guess: GuessUpdateOneWithoutUserInput
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
 }
 
 input UserUpdateOneWithoutGuessInput {
@@ -770,6 +1103,11 @@ input UserUpdateOneWithoutGuessInput {
 input UserUpdateWithoutGuessDataInput {
   name: String
   email: String
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutGuessInput {
@@ -929,6 +1267,9 @@ input UserWhereInput {
   """All values not ending with the given string."""
   email_not_ends_with: String
   guess: GuessWhereInput
+  _MagicalBackRelation_NameToUser_every: NameWhereInput
+  _MagicalBackRelation_NameToUser_some: NameWhereInput
+  _MagicalBackRelation_NameToUser_none: NameWhereInput
 }
 
 input UserWhereUniqueInput {

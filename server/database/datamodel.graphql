@@ -21,3 +21,13 @@ type Guess {
   sex: String!
   user: User!
 }
+
+type Name {
+  id: ID! @unique
+  creator: User
+  name: String! @unique
+  votes: Int @default(value: 0)
+  duels: Int @default(value: 0)
+  stability: Float @default(value: 0)
+  score: Float @default(value: 0)
+}
