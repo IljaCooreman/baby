@@ -22,7 +22,7 @@ const AppDiv = styled('div')`
 `;
 
 const client = new ApolloClient({
-  uri: `${config.uri}:${config.port}/`
+  uri: `${config.uri}`
 });
 // // Fetch GraphQL data with plain JS
 // client

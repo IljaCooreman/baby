@@ -2,6 +2,7 @@ import { GraphQLServer } from 'graphql-yoga'
 import { importSchema } from 'graphql-import'
 import { Prisma } from './generated/prisma'
 import { Context } from './utils'
+const cors = require('cors');
 
 const resolvers = {
   Query: {
@@ -73,10 +74,11 @@ const server = new GraphQLServer({
   context: req => ({
     ...req,
     db: new Prisma({
-      endpoint: 'https://eu1.prisma.sh/public-dandypegasus-221/server/dev', // the endpoint of the Prisma API
+      endpoint: 'https://baby-database.herokuapp.com/server/dev', // the endpoint of the Prisma API
       debug: true, // log all GraphQL queries & mutations sent to the Prisma API
       secret: 'mysecret123', // only needed if specified in `database/prisma.yml`
     }),
   }),
 })
+server.use(cors());
 server.start({ port: 4000 }, () => console.log('Server is running on http://localhost:4000'))

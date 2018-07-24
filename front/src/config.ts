@@ -4,6 +4,7 @@ export interface Iconfig {
 }
 
 export const config = {
-  port: '4000',
-  uri: 'http://localhost',
-}
+  // port: '4000',
+  // uri: 'http://localhost:4000/',
+  uri: 'https://baby-backend.herokuapp.com/',
+} 
