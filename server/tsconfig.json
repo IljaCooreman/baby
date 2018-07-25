@@ -7,7 +7,23 @@
     "rootDir": "src",
     "outDir": "dist",
     "lib": [
-      "esnext", "dom"
+      "esnext",
+      "dom"
     ]
-  }
+  },
+  "outDir": "build",
+  "paths": {
+    "~/*": [
+      "src/*"
+    ]
+  },
+  "sourceMap": true,
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "src"
+  ]
 }
