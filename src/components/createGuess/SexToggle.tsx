@@ -11,7 +11,7 @@ const containerStyles = css`
   align-items: center;
   padding: 20px;
   height: 240px;
-  width: 400px;
+  /* width: 400px; */
 `;
 const Circle = styled('div')(`
   display: flex;
@@ -46,10 +46,10 @@ class SexToggle extends React.Component<FieldProps<any>, {}> {
     const { name } = this.props.field;
     return (
       <div className={containerStyles}>
-        <Circle active={values[name] === "f"} className={blueCircle} onClick={() => setFieldValue(name, 'f')}>
+        <Circle active={values[name] === "m"} className={blueCircle} onClick={() => setFieldValue(name, 'm')}>
           <img width="76px" src={male} />
         </Circle>
-        <Circle active={values[name] === "m"} className={pinkCircle} onClick={() => setFieldValue(name, 'm')}>
+        <Circle active={values[name] === "f"} className={pinkCircle} onClick={() => setFieldValue(name, 'f')}>
           <img width="70px" src={female} />
         </Circle>
       </div>
