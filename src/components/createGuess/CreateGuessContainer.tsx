@@ -70,7 +70,7 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
         // }}
         >
           {(createUserAndGuess, { data, error, loading }) => {
-            if (!data) return <div className={css`
+            if (data) return <div className={css`
               display: flex;
               flex-flow: column;
             `}>
