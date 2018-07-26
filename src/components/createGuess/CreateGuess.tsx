@@ -71,7 +71,7 @@ const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, l
             name="birthDate"
             render={({ field, form }: FieldProps<IFormValues>) => (
               <div className={labelContainerStyles}>
-                <Input type="date" {...field} placeholder="geboortedatum" error={form.errors.birthDate} />
+                <Input type="date" {...field} value={moment(field.value).format('YYYY-MM-DD')} placeholder="geboortedatum" error={form.errors.birthDate} />
                 <FixedSpan>{form.touched.birthDate &&
                   form.errors.birthDate &&
                   form.errors.birthDate}
