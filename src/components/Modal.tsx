@@ -19,9 +19,14 @@ const Container = styled('div')`
   background: rgba(32,90,132,.35);
   box-shadow: 0 0 2px 0 rgba(0,0,0,0.11);
   border-radius: 39px;
-  padding: 26px;
-  max-width: 500px;
-  margin: 120px 0 40px 0;
+  padding: 10px;
+  width: calc(100vw - 20px);
+  overflow-x: hidden;
+   @media (min-width: 500px) {
+    padding: 26px;
+    max-width: 500px;
+    margin: 120px 0 40px 0;
+   }
 `;
 
 export interface IModalProps {

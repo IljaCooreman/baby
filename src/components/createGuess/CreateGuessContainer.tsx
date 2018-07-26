@@ -5,7 +5,11 @@ import CreateGuess from './CreateGuess';
 import Modal from '../Modal';
 import { IFormValues } from './CreateGuess';
 import CreateUserForm from './CreateUserForm';
+import { css } from 'emotion';
 // import Button from './Button';
+/* tslint:disable-next-line */
+const gif = require('src/assets/noaKiest.gif');
+
 
 interface ICreateuserState {
   stage: number,
@@ -65,7 +69,13 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
         // }}
         >
           {(createUserAndGuess, { data, error, loading }) => {
-            if (data) return <div><h2>merci voor de input.</h2> <p>Wij registreerden het volgende:</p> <p>{JSON.stringify(data)}</p><p>Ziet er dus goed uit!</p></div>
+            if (!data) return <div>
+              <h2>merci voor de input.</h2> <p>Wij registreerden het volgende:</p> <p>{JSON.stringify(data)}</p><p>Ziet er dus goed uit!</p>
+              <img className={css`
+              border-radius: 4px;
+              align-self: center;
+              `} src={gif} />
+            </div>
             const handleSubmit = (userValues) => {
               console.log({ variables: { ...userValues, ...this.state.variables } })
               createUserAndGuess({ variables: { ...userValues, ...this.state.variables } })

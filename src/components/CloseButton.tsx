@@ -7,6 +7,7 @@ const linkStyles = css`
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 1;
 `;
 
 export interface ICloseButtonProps {

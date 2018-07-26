@@ -4,7 +4,7 @@ import SexToggle from './SexToggle';
 import Button from '../Button';
 import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 import * as moment from 'moment';
-
+import { css } from 'emotion';
 
 
 export interface IFormValues {
@@ -53,7 +53,10 @@ const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, l
       }
       onSubmit={(values: IFormValues) => handleSubmitClick({ variables: values })}
       render={({ errors, values }: FormikProps<IFormValues>) => (
-        <Form>
+        <Form className={css`
+          display: flex;
+          flex-flow: column;
+        `}>
           <h2>Geslacht</h2>
           <p>Jij weet het geslacht natuurlijk al heel zeker ….</p>
           <div className={labelContainerStyles}>

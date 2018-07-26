@@ -11,7 +11,7 @@ const containerStyles = css`
   align-items: center;
   padding: 20px;
   height: 240px;
-  /* width: 400px; */
+  width: 400px;
 `;
 const Circle = styled('div')(`
   display: flex;

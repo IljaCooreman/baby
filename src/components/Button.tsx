@@ -27,6 +27,7 @@ const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, bi
       padding: ${big ? 14 : 5}px 20px;
       margin: 4px;
       color: #FAF9FF;
+      align-self: center;
       text-align: center;
       text-transform: none;
       cursor: ${disabled ? 'default' : 'pointer'};

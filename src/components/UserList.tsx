@@ -16,7 +16,7 @@ const UserList = () => (
     `}
   >
     {({ loading, error, data }) => {
-      if (loading) return (<p>Loading...</p>)
+      if (loading) return (<p>Laden.... </p>)
       if (error) return <p>{error.message}</p>;
 
       return (

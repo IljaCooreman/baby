@@ -36,7 +36,7 @@ const LandingPage: React.SFC<{}> = () => {
           <Button text={'Waag je gok'} big={true} />
         </Link>
         <Link to={'/guess/results'}>
-          bekijk de voorspellingen
+          bekijk alle voorspellingen
       </Link>
       </HalfScreen>
       <HalfScreen lighter={true}>
@@ -45,8 +45,8 @@ const LandingPage: React.SFC<{}> = () => {
         <Link to={'/'} className={buttonMargins}>
           <Button text={'Under construction'} big={true} disabled={true} />
         </Link>
-        <Link to={'/guess/results'}>
-          Een naam toevoegen
+        <Link to={'/'}>
+          Hier komt ook iets
       </Link>
       </HalfScreen>
     </div>
