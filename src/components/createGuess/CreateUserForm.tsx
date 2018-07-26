@@ -3,6 +3,7 @@ import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
 import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 // import { Link } from 'react-router-dom';
 import Button from '../Button';
+import { css } from 'emotion';
 interface IFormValues {
   email?: string,
   name?: string,
@@ -43,7 +44,10 @@ const CreateUserForm: React.SFC<ICreateUserFormProps> = ({ handleSubmit, data, e
       }
       onSubmit={(values: IFormValues) => handleSubmit(values)}
       render={({ errors, values }: FormikProps<IFormValues>) => (
-        <Form>
+        <Form className={css`
+          display: flex;
+          flex-flow: column;
+        `}>
           <Field
             name="name"
             render={({ field, form }: FieldProps<IFormValues>) => (
