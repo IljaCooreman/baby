@@ -6,7 +6,8 @@ import Modal from '../Modal';
 import { IFormValues } from './CreateGuess';
 import CreateUserForm from './CreateUserForm';
 import { css } from 'emotion';
-// import Button from './Button';
+import Button from '../Button';
+import { Link } from 'react-router-dom';
 /* tslint:disable-next-line */
 const gif = require('src/assets/noaKiest.gif');
 
@@ -69,12 +70,28 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
         // }}
         >
           {(createUserAndGuess, { data, error, loading }) => {
-            if (!data) return <div>
-              <h2>merci voor de input.</h2> <p>Wij registreerden het volgende:</p> <p>{JSON.stringify(data)}</p><p>Ziet er dus goed uit!</p>
+            if (!data) return <div className={css`
+              display: flex;
+              flex-flow: column;
+            `}>
+              <h2>Merci voor de input, {data && `${data.createUserAndGuess.user.name}!`}</h2>
+              <p>Het volgende werd weggeschreven op onze private blockchain:</p> <p className={css`
+              font-size: 12px;
+              opacity: .7;
+              font-family: monospace;
+              overflow-wrap: break-word;
+            `}>{JSON.stringify(data)}</p><p>Een straffe die het daarvan af krijgt!</p>
+              <h3>Let's talk about sex, baby!</h3>
+              <p>Wij, Roxanne en Ilja, weten wel al of het een jongen of een meisje is. En onze hond Noa heeft ook al een vermoeden... Kijk straks eens in je mailbox als je meer te weten wil komen!</p>
               <img className={css`
-              border-radius: 4px;
+              border-radius: 16px;
               align-self: center;
               `} src={gif} />
+              <h3>Over winnen en belonen</h3>
+              <p>Voor sommige mensen is winnen dan toch belangrijker dan spelen. Om de competitie ook voor hen spannend te houden zullen we een nog uit te denken prijs uitreiken. Een diner met gebakken navelstreng op een bedje van gedroogde placenta?</p>
+              <Link to={'/'} className={css`align-self: center;`}>
+                <Button text="Einde" />
+              </Link>
             </div>
             const handleSubmit = (userValues) => {
               console.log({ variables: { ...userValues, ...this.state.variables } })

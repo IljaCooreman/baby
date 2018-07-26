@@ -20,7 +20,7 @@ color: rgba(255,255,255,0.81);
 /* min-width: 60px; */
 margin-right: 12px;
 text-align: right;
-min-width: 60px;
+min-width: 100px;
 text-transform: capitalize;
 `;
 
@@ -56,6 +56,7 @@ const GuessesList: React.SFC<{}> = () => (
 
       return (
         <Modal>
+          <h2 className={css`text-align: center;`}>Voorspellingen</h2>
           <ul>{
             orderList(data.guesses, 'birthDate').map((guess: any) => (
               <Li key={guess.id}>
