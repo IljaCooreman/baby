@@ -50,7 +50,7 @@ const GuessesList: React.SFC<{}> = () => (
     fetchPolicy={'cache-and-network'}
   >
     {({ loading, error, data }) => {
-      if (loading) return (<p>Loading...</p>)
+      if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>Even luisteren bij de server...</div>)
       if (error) return <p>{error.message}</p>;
 
 

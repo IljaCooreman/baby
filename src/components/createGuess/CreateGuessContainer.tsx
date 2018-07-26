@@ -70,7 +70,7 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
         // }}
         >
           {(createUserAndGuess, { data, error, loading }) => {
-            if (data) return <div className={css`
+            if (!data) return <div className={css`
               display: flex;
               flex-flow: column;
             `}>
@@ -82,13 +82,12 @@ export default class CreateGuessContainer extends React.Component<{}, ICreateuse
               overflow-wrap: break-word;
             `}>{JSON.stringify(data)}</p><p>Een straffe die het daarvan af krijgt!</p>
               <h3>Let's talk about sex, baby!</h3>
-              <p>Wij, Roxanne en Ilja, weten wel al of het een jongen of een meisje is. En onze hond Noa heeft ook al een vermoeden... Kijk straks eens in je mailbox als je meer te weten wil komen!</p>
+              <p>Wat wordt het? Noa wil het je graag vertellen! SMS de geheime code naar Roxanne of Ilja: <div className={css`font-family: monospace; font-weight: 700; color: white;`}>'Noa, verlos mij!'</div></p>
               <img className={css`
               border-radius: 16px;
               align-self: center;
               `} src={gif} />
-              <h3>Over winnen en belonen</h3>
-              <p>Voor sommige mensen is winnen dan toch belangrijker dan spelen. Om de competitie ook voor hen spannend te houden zullen we een nog uit te denken prijs uitreiken. Een diner met gebakken navelstreng op een bedje van gedroogde placenta?</p>
+              <p>**Voor wie winnen dan toch belangrijker is dan deelnemen: diegene die de beste gok waagt wint de placenta. Proficiat!</p>
               <Link to={'/'} className={css`align-self: center;`}>
                 <Button text="Einde" />
               </Link>

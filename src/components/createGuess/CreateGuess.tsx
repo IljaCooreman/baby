@@ -66,7 +66,7 @@ const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, l
             />
           </div>
           <h2>Datum</h2>
-          <p>En de geboortedatumdatum is ook een makkie! (Oh ja, Rox is uitgerekend op 19/01/2019)</p>
+          <p>En de geboortedatum is ook een makkie! (Oh ja, Rox is uitgerekend op 19/01/2019)</p>
           <Field
             name="birthDate"
             render={({ field, form }: FieldProps<IFormValues>) => (
@@ -80,7 +80,7 @@ const CreateGuess: React.SFC<ICreateGuessProps> = ({ handleSubmitClick, error, l
             )}
           />
           <h2>Gewicht</h2>
-          <p>Voor de die hards … (geboortegewicht in gram)</p>
+          <p>Voor de diehards … (geboortegewicht in gram)</p>
           <Field
             name="weight"
             render={({ field, form }: FieldProps<IFormValues>) => (
