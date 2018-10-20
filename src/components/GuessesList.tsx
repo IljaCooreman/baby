@@ -52,6 +52,10 @@ const GuessesList: React.SFC<{}> = () => (
     {({ loading, error, data }) => {
       if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>Even luisteren bij de server...</div>)
       if (error) return <p>{error.message}</p>;
+      let femaleCount = 0;
+      data.guesses.forEach(guess => { if (guess.sex === 'f') femaleCount++ })
+      const femalePercent = femaleCount / data.guesses.length;
+      console.log(femalePercent)
 
 
       return (
@@ -70,8 +74,7 @@ const GuessesList: React.SFC<{}> = () => (
                 />
                 <span>{moment(guess.birthDate).local().format('DD MMM YYYY')}</span>
               </Li>
-            )
-            )
+            ))
           }</ul>
         </Modal>
       );
