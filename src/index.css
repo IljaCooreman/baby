@@ -44,3 +44,16 @@ color: rgba(93,226,249,.8);
 text-align: left;
 text-decoration: none;
 }
+
+.fade-in {
+  animation: fadeIn 6s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

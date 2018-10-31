@@ -14,7 +14,7 @@ const CREATE_NAME = gql`
   mutation createName($name: String!) {
     createName(name: $name) {
       name
-    }  
+    } 
   }
 `;
 
@@ -35,13 +35,13 @@ export default class CreateNameContainer extends React.Component<{}> {
             `}>
                 <h2>{data.createName.name} werd toegevoegd aan de lijst</h2>
                 <p>Bedankt voor uw input</p>
-                <Link to={'/the-naming-game/create-name'}>
+                <Link to={'/the-naming-game/redirect'}>
                   Nog een naam toevoegen
                 </Link>
                 <Link to={'/the-naming-game'} className={css`align-self: center;`}>
                   <Button text="Sluit" />
                 </Link>
-            </div>
+              </div>
             );
             return (
               <CreateName createName={createName} error={error} loading={loading} />

@@ -42,8 +42,8 @@ const LandingPage: React.SFC<{}> = () => {
       <HalfScreen lighter={true}>
         <h2>The naming game</h2>
         <P>Help ons een mooie naam bedenken!</P>
-        <Link to={'/'} className={buttonMargins}>
-          <Button text={'Under construction'} big={true} disabled={true} />
+        <Link to={'/the-naming-game/vote'} className={buttonMargins}>
+          <Button text={'Kies een naam!'} big={true} disabled={false} />
         </Link>
         <Link to={'/the-naming-game/create-name'}>
           Voeg een naam toe

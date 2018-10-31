@@ -19,6 +19,25 @@ background: rgba(255,255,255,.9);
   })
 );
 
+export const BigInput = styled('input')(`
+background: rgba(255,255,255,.2);
+color: white;
+font-weight: 700;
+font-size: 38px;
+min-height: 65px;
+text-align: center;
+border-radius: 25px;
+padding: 0 21px;
+margin: 10px auto;
+width: 100%;
+max-width: 300px;
+justify-self: center;
+border: none;
+`, ({ error }: { error?: boolean }) => ({
+    background: error ? 'rgba(246,99,173,.9)' : 'rgba(255,255,255,.2)',
+  })
+);
+
 export const FixedSpan = styled('span')`
   position: relative;
   min-height: 20px;

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
-import { Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
+import { BigInput, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 import Button from '../Button';
 import { css } from 'emotion';
+import NamesList from './NamesList';
 interface IFormValues {
   name?: string,
 }
@@ -35,17 +36,17 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
       }
       onSubmit={(values: IFormValues) => createName({ variables: { name: values.name } })}
       render={({ errors, values }: FormikProps<IFormValues>) => (
-        <Form className={css`
+        [<Form className={css`
           display: flex;
           flex-flow: column;
-        `}>
+        `} key={1}>
           <Field
             name="name"
             render={({ field, form }: FieldProps<IFormValues>) => (
               <div className={labelContainerStyles}>
                 <h2>Naam toevoegen</h2>
                 <p>Vul een naam in die je leuk vindt.</p>
-                <Input type="text" {...field} placeholder="name" error={form.errors.name} />
+                <BigInput type="text" {...field} autoFocus={true} error={form.errors.name} />
                 <FixedSpan>
                   {form.touched.name &&
                     form.errors.name &&
@@ -56,11 +57,12 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
           />
           <div>{error ? error.message === "GraphQL error: A unique constraint would be violated on Name. Details: Field name = name" ? "Deze naam is al toegevoegd aan de lijst!" : error.message : ''}</div>
           <Button
-            text='volgende'
+            text='Toevoegen'
             loading={loading ? true : false}
             disabled={errors.name || !values.name}
           />
-        </Form>
+        </Form>,
+        <NamesList key={2} />]
       )}
     />
   );

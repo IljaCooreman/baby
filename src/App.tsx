@@ -10,6 +10,7 @@ import Background from './components/Background';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
 } from 'react-router-dom'
 import LandingPage from './components/LandingPage';
 import CreateGuessContainer from './components/createGuess/CreateGuessContainer';
@@ -42,6 +43,7 @@ class App extends React.Component {
             <Route path="/guess/results" component={GuessesList} />
             <Route path="/the-naming-game/vote" component={ChooseNameContainer} />
             <Route path="/the-naming-game/create-name" component={CreateNameContainer} />
+            <Route path="/the-naming-game/redirect" render={() => <Redirect to="/the-naming-game/create-name" />} />
           </AppDiv>
         </Router>
       </ApolloProvider>
