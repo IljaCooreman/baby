@@ -15,8 +15,8 @@ interface IState {
 
 
 const PICK_NAME = gql`
-mutation pickName($winnerId: ID!, $loserId: ID!) {
-    pickName(winnerId: $winnerId, loserId: $loserId) {
+mutation pickName($winnerId: ID!, $loserIds: [ID!], $weight: Float) {
+    pickName(winnerId: $winnerId, loserIds: $loserIds, weight: $weight) {
         id
         name
         score
@@ -47,10 +47,10 @@ export default class ChooseName extends React.Component<IChooseNameProps, IState
             <div>
               {
                 pickContestants(this.props.names).map((name, i, names) => {
-                  const namesCopy = names.slice();
-                  namesCopy.splice(i, 1);
+                  const selection = names.slice();
+                  selection.splice(i, 1);
                   return (
-                    <NameButton key={name.id} {...name} pickName={pickName} handleNameClick={this.handleNameClick} contestantId={namesCopy[0].id} />
+                    <NameButton key={name.id} {...name} pickName={pickName} handleNameClick={this.handleNameClick} contestants={selection} />
                   )
                 })
               }

@@ -15,6 +15,7 @@ import LandingPage from './components/LandingPage';
 import CreateGuessContainer from './components/createGuess/CreateGuessContainer';
 import GuessesList from './components/GuessesList';
 import ChooseNameContainer from './components/namingGame/ChooseNameContainer';
+import CreateNameContainer from './components/namingGame/CreateNameContainer';
 
 
 const AppDiv = styled('div')`
@@ -39,7 +40,8 @@ class App extends React.Component {
             <Route path="/userlist" component={UserList} />
             <Route path="/guess/form" component={CreateGuessContainer} />
             <Route path="/guess/results" component={GuessesList} />
-            <Route path="/the-naming-game" component={ChooseNameContainer} />
+            <Route path="/the-naming-game/vote" component={ChooseNameContainer} />
+            <Route path="/the-naming-game/create-name" component={CreateNameContainer} />
           </AppDiv>
         </Router>
       </ApolloProvider>

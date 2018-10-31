@@ -13,7 +13,7 @@ export interface IButtonProps {
   disabled?: boolean,
 }
 
-const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit, loading, disabled }) => {
+const Button: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit, loading, disabled }) => {
   return (
     <button type={submit ? 'submit' : ''}
       disabled={disabled}
@@ -45,4 +45,4 @@ const CloseButton: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, bi
   )
 };
 
-export default CloseButton;
+export default Button;

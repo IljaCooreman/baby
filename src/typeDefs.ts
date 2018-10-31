@@ -5,11 +5,11 @@ export interface IUser {
 }
 
 export interface IName {
+  duels: number,
   id: string,
   name: string,
-  votes: number,
-  duels: number,
-  stability: number,
   score: number,
+  stability: number,
+  votes: number,
   creator?: IUser,
 }

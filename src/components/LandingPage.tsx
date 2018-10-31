@@ -45,8 +45,8 @@ const LandingPage: React.SFC<{}> = () => {
         <Link to={'/'} className={buttonMargins}>
           <Button text={'Under construction'} big={true} disabled={true} />
         </Link>
-        <Link to={'/'}>
-          Hier komt ook iets
+        <Link to={'/the-naming-game/create-name'}>
+          Voeg een naam toe
       </Link>
       </HalfScreen>
     </div>
