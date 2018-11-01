@@ -1,6 +1,6 @@
 import { IName } from '../../typeDefs';
 
-export function pickContestants(names: [IName]) {
+export function pickContestants(names: IName[]) {
   return pickRandom(names.slice(), 3);
 }
 

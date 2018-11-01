@@ -15,8 +15,9 @@ import {
 import LandingPage from './components/LandingPage';
 import CreateGuessContainer from './components/createGuess/CreateGuessContainer';
 import GuessesList from './components/GuessesList';
-import ChooseNameContainer from './components/namingGame/ChooseNameContainer';
+// import ChooseNameContainer from './components/namingGame/ChooseNameContainer';
 import CreateNameContainer from './components/namingGame/CreateNameContainer';
+import NamingGameContainer from './components/namingGame/NamingGameContainer';
 
 
 interface IAppState {
@@ -46,7 +47,8 @@ class App extends React.Component<{}, IAppState> {
             <Route path="/userlist" component={UserList} />
             <Route path="/guess/form" component={CreateGuessContainer} />
             <Route path="/guess/results" component={GuessesList} />
-            <Route path="/the-naming-game/vote" component={ChooseNameContainer} />
+            {/* <Route path="/the-naming-game" component={NamingGameContainer} /> */}
+            <Route path="/the-naming-game/vote" component={NamingGameContainer} />
             <Route path="/the-naming-game/create-name" component={CreateNameContainer} />
             <Route path="/the-naming-game/redirect" render={() => <Redirect to="/the-naming-game/create-name" />} />
           </AppDiv>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ChooseName from './ChooseName';
-// import dummyNames from './dummyNames.js';
+import dummyNames from '../../dummyNames.js';
 
 
 const ChooseNameContainer = () => (
@@ -22,10 +22,11 @@ const ChooseNameContainer = () => (
   >
     {({ loading, error, data }) => {
       if (loading) return (<p>Namen Laden.... </p>)
-      if (error) return <p>Oeps, foutje: {error.message}</p>;
-      // console.log(dummyNames.data.names)
+      // if (error) return <p>Oeps, foutje: {error.message}</p>;
+      console.log(dummyNames.names)
       return (
-        <ChooseName names={data.names} />
+        <ChooseName names={dummyNames.names} />
+        // <ChooseName names={data.names} />
       );
     }}
   </Query>

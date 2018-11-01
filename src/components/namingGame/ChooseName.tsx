@@ -4,14 +4,25 @@ import { Mutation } from "react-apollo";
 import { IName } from '../../typeDefs';
 import NameButton from './NameButton';
 import { pickContestants } from './utils';
-
+import styled from 'react-emotion';
 interface IChooseNameProps {
-  names: [IName]
+  names: IName[]
 };
 
 interface IState {
-  names: [IName]
+  names: IName[]
 }
+
+const Background = styled('div')`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+`;
 
 
 const PICK_NAME = gql`
@@ -44,7 +55,7 @@ export default class ChooseName extends React.Component<IChooseNameProps, IState
             <div>keuze opslaan</div>
           );
           return (
-            <div>
+            <Background>
               {
                 pickContestants(this.props.names).map((name, i, names) => {
                   const selection = names.slice();
@@ -54,7 +65,7 @@ export default class ChooseName extends React.Component<IChooseNameProps, IState
                   )
                 })
               }
-            </div>
+            </Background>
           )
         }}
       </Mutation>

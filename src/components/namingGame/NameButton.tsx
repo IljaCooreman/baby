@@ -5,12 +5,19 @@ import { calcWeight } from './utils';
 
 
 const Container = styled('div')`
-  font-size: 22px;
+  font-family: Rubik-Bold;
+  font-size: 40px;
   font-weight: 700;
-  padding: 30px;
-  margin: 5px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 22px 50px;
+  margin: 10px;
+  background: #000000;
+  border-radius: 60px;
   cursor: pointer;
-  background: rgba(255,255,255,.3);
+  &&:hover {
+    background: #F663AD;
+  }
 `;
 
 
@@ -32,7 +39,7 @@ const NameButton: React.SFC<INameButton> = ({ name, id, pickName, handleNameClic
 
   return (
     <Container onClick={handleClick}>
-      {name}: {score}
+      {name}
     </Container>
   )
 };
