@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from 'react-emotion';
 
-interface IBackgroundProps {
+interface IBackgroundState {
   x: number,
   y: number
 }
@@ -16,7 +16,7 @@ const blueCircle = (x: number, y: number) => css`
   background: #64CBDC;
   mix-blend-mode: lighten;
   opacity: .2;
-  transform: translate(${x / 25}px, ${y / 25}px);
+  transform: translate(${x / 25}px, -${y / 10}px);
   transition: transform 3s cubic-bezier(0.27, 0.01, 0.39, 1);
 `;
 const PinkCircle = (x: number, y: number) => css`
@@ -29,17 +29,24 @@ const PinkCircle = (x: number, y: number) => css`
   background: #F160AD;
   mix-blend-mode: lighten;
   opacity: .2;
-  transform: translate(-${x / 15}px, ${y / 15}px);
+  transform: translate(-${x / 15}px, ${y / 10}px);
   transition: transform 1s ease-out;
   `;
 
-class Background extends React.Component<IBackgroundProps> {
+class Background extends React.Component<{}, IBackgroundState> {
   constructor(props) {
     super(props);
+    this.state = { x: 350, y: 350 };
+    this.changeMousePosition = this.changeMousePosition.bind(this);
+    document.addEventListener('mousemove', this.changeMousePosition);
+  }
+
+  public changeMousePosition(e) {
+    if (Math.abs(e.screenX - this.state.x) > 50 || Math.abs(e.screenY - this.state.y) > 50) this.setState({ x: e.screenX, y: e.screenY });
   }
 
   public render() {
-    const { x, y } = this.props;
+    const { x, y } = this.state;
     return (
       <div className={
         css`

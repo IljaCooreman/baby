@@ -34,21 +34,13 @@ const client = new ApolloClient({
 
 
 class App extends React.Component<{}, IAppState> {
-  constructor(props) {
-    super(props);
-    this.state = { x: 350, y: 350 };
-    this.changeMousePosition = this.changeMousePosition.bind(this);
-  }
 
-  public changeMousePosition(e) {
-    if (Math.abs(e.screenX - this.state.x) > 50 || Math.abs(e.screenY - this.state.y) > 50) this.setState({ x: e.screenX, y: e.screenY });
-  }
   public render() {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <AppDiv className="App" onMouseMove={this.changeMousePosition}>
-            <Background {...this.state} />
+          <AppDiv className="App">
+            <Background />
 
             <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
