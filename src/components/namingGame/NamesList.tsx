@@ -59,9 +59,8 @@ const NamesList: React.SFC<{}> = () => (
     `}
     fetchPolicy={'cache-and-network'}
   >
-    {({ loading, error, data }) => {
-      if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>Lijst met namen opvragen...</div>)
-      // if (error) return <p>{error.message}</p>;
+    {({ loading, data }) => {
+      if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>...</div>)
 
       return (
         <div className={'fade-in'}>

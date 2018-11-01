@@ -1,11 +1,12 @@
 import * as React from 'react';
-import styled, { css } from 'react-emotion';
+import { css } from 'react-emotion';
 
-// interface IBackgroundProps {
-// propName: any,
-// }
+interface IBackgroundProps {
+  x: number,
+  y: number
+}
 
-const BlueCircle = styled('div')`
+const blueCircle = (x: number, y: number) => css`
   border-radius: 50%;
   position: fixed;
   top: -150px;
@@ -15,8 +16,10 @@ const BlueCircle = styled('div')`
   background: #64CBDC;
   mix-blend-mode: lighten;
   opacity: .2;
+  transform: translate(${x / 25}px, ${y / 25}px);
+  transition: transform 3s cubic-bezier(0.27, 0.01, 0.39, 1);
 `;
-const PinkCircle = styled('div')`
+const PinkCircle = (x: number, y: number) => css`
   position: fixed;
   top: 200px;
   right: -460px;
@@ -26,21 +29,32 @@ const PinkCircle = styled('div')`
   background: #F160AD;
   mix-blend-mode: lighten;
   opacity: .2;
-`;
+  transform: translate(-${x / 15}px, ${y / 15}px);
+  transition: transform 1s ease-out;
+  `;
 
-const Background: React.SFC<{}> = () => {
-  return (
-    <div className={css`
+class Background extends React.Component<IBackgroundProps> {
+  constructor(props) {
+    super(props);
+  }
+
+  public render() {
+    const { x, y } = this.props;
+    console.log(this.props.x)
+    return (
+      <div className={
+        css`
       position: fixed;
       height: 100%;
       width: 100%;
       background: #236298;
       z-index: -1;
-    `}>
-      <PinkCircle />
-      <BlueCircle />
-    </div>
-  )
+      `}>
+        <div className={PinkCircle(x, y)} />
+        {/* <PinkCircle x={x} y={y} /> */}
+        <div className={blueCircle(x, y)} />
+      </div>
+    );
+  };
 };
-
 export default Background;

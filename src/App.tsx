@@ -19,6 +19,11 @@ import ChooseNameContainer from './components/namingGame/ChooseNameContainer';
 import CreateNameContainer from './components/namingGame/CreateNameContainer';
 
 
+interface IAppState {
+  x: number,
+  y: number
+}
+
 const AppDiv = styled('div')`
 `;
 
@@ -28,14 +33,22 @@ const client = new ApolloClient({
 
 
 
-class App extends React.Component {
+class App extends React.Component<{}, IAppState> {
+  constructor(props) {
+    super(props);
+    this.state = { x: 350, y: 350 };
+    this.changeMousePosition = this.changeMousePosition.bind(this);
+  }
 
+  public changeMousePosition(e) {
+    if (Math.abs(e.screenX - this.state.x) > 50 || Math.abs(e.screenY - this.state.y) > 50) this.setState({ x: e.screenX, y: e.screenY });
+  }
   public render() {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <AppDiv className="App">
-            <Background />
+          <AppDiv className="App" onMouseMove={this.changeMousePosition}>
+            <Background {...this.state} />
 
             <Route exact={true} path="/" component={LandingPage} />
             <Route path="/userlist" component={UserList} />
