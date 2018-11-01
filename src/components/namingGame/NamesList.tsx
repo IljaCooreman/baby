@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-// import * as moment from 'moment';
-// import Modal from '../Modal';
 import styled, { css } from 'react-emotion';
-import dummyNames from '../../dummyNames';
+// import dummyNames from '../../dummyNames';
 
 
 const Name = styled('div')`
@@ -59,20 +57,21 @@ const NamesList: React.SFC<{}> = () => (
     `}
     fetchPolicy={'cache-and-network'}
   >
-    {({ loading, data }) => {
+    {({ loading, error, data }) => {
       if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>...</div>)
+      if (error) return null;
 
       return (
         <div className={'fade-in'}>
           <SubTitle className={css`text-align: center;`}>Huidige namenlijst</SubTitle>
           <Container>
             {
-              dummyNames.names.map((name: any) => (
+              data.names.map((name: any) => (
                 <Name key={name.id}>{name.name}</Name>
               ))
             }
           </Container>
-          <Note>{dummyNames.names.length} namen in de lijst</Note>
+          <Note>{data.names.length} namen in de lijst</Note>
         </div>
       );
     }}

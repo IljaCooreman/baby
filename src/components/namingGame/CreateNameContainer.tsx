@@ -26,7 +26,6 @@ export default class CreateNameContainer extends React.Component<{}> {
       <Modal>
         <Mutation mutation={CREATE_NAME}>
           {(createName, { data, error, loading }) => {
-            console.log(error)
             if (data) return (
               <div className={css`
               display: flex;

@@ -40,7 +40,6 @@ class Background extends React.Component<IBackgroundProps> {
 
   public render() {
     const { x, y } = this.props;
-    console.log(this.props.x)
     return (
       <div className={
         css`

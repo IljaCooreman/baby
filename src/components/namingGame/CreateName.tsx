@@ -17,8 +17,6 @@ interface ICreateUserFormProps {
 
 
 const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, loading }) => {
-
-  console.log(data, error, loading)
   return (
     <Formik
       initialValues={{
