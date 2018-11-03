@@ -15,8 +15,10 @@ const Container = styled('div')`
   background: #000000;
   border-radius: 60px;
   cursor: pointer;
+  transition: all .2s ease;
   &&:hover {
     background: #F663AD;
+    padding: 22px 54px;
   }
 `;
 
