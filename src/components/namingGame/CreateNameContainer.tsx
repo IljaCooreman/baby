@@ -6,19 +6,47 @@ import { css } from 'emotion';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
 import CreateName from './CreateName';
+import { IUser } from '../../typeDefs';
 
-
+interface ICreateNameContainerState {
+  user: IUser,
+}
 
 
 const CREATE_NAME = gql`
-  mutation createName($name: String!) {
-    createName(name: $name) {
+  mutation createName($name: String!, $email: String) {
+    createName(name: $name, creator: $email) {
       name
     } 
   }
 `;
 
-export default class CreateNameContainer extends React.Component<{}> {
+export default class CreateNameContainer extends React.Component<{}, ICreateNameContainerState> {
+  constructor(props) {
+    super(props);
+    this.state = { user: { email: '', id: '', name: '' } }
+    // check local storage for user
+    const localUserEmail = localStorage.getItem('email');
+    if (localUserEmail) this.state = ({
+      user: {
+        id: '', name: '',
+        email: localUserEmail,
+      }
+    });
+    this.setUser = this.setUser.bind(this);
+  }
+
+  public setUser(email?: string) {
+    if (email || email === '') {
+      localStorage.setItem('email', email);
+      this.setState({
+        user: {
+          ...this.state.user,
+          email,
+        }
+      })
+    }
+  }
 
   public render() {
 
@@ -43,7 +71,7 @@ export default class CreateNameContainer extends React.Component<{}> {
               </div>
             );
             return (
-              <CreateName createName={createName} error={error} loading={loading} />
+              <CreateName createName={createName} error={error} loading={loading} setUser={this.setUser} user={this.state.user} />
             )
           }}
         </Mutation>
