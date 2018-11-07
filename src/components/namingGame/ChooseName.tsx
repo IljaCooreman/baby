@@ -18,10 +18,7 @@ const Background = styled('div')`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
 `;
 
 

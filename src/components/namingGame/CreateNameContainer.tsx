@@ -65,7 +65,7 @@ export default class CreateNameContainer extends React.Component<{}, ICreateName
                 <Link to={'/the-naming-game/redirect'}>
                   Nog een naam toevoegen
                 </Link>
-                <Link to={'/the-naming-game'} className={css`align-self: center;`}>
+                <Link to={'/'} className={css`align-self: center;`}>
                   <Button text="Sluit" />
                 </Link>
               </div>

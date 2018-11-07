@@ -17,7 +17,7 @@ display: flex;
   align-items: center;
   border-radius: 50%;
   padding: 10px;
-  margin: 16px;
+  margin: 2px;
   background: black;
   width: 32px;
   height: 32px;

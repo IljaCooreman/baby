@@ -20,7 +20,7 @@ function pickRandom(arr: IName[], count: number = 1, selection: IName[] = []) {
 export function calcWeight(winnerScore: number, losers: IName[]) {
   const bestLoserScore = losers.reduce((a, b) => Math.max(a, b.score), 0);
   const delta = bestLoserScore - winnerScore;
-  const weight = delta > 0 ? 1 + delta / winnerScore : 1;
+  const weight = Math.round(delta > 0 ? 1 + delta / winnerScore : 1);
   console.log('best loser score', bestLoserScore, 'winnerScore', winnerScore, 'weight', weight);
   // prevent extreme high weights
   return weight < 5 ? weight : 5;
