@@ -2,17 +2,18 @@ import * as React from 'react';
 import { Formik, Form, FieldProps, FormikProps, Field } from 'formik';
 import { BigInput, Input, FixedSpan, labelContainerStyles } from 'src/assets/styles';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 import NamesList from './NamesList';
 import { IUser } from '../../typeDefs';
 interface IFormValues {
   name?: string,
-  email?: string,
+  user?: string,
 }
 
 interface ICreateUserFormProps {
   createName: (IFormValues) => void,
-  setUser: (email?: string) => void,
+  setUser: (userName?: string) => void,
   user: IUser,
   data?: any,
   loading?: boolean,
@@ -27,7 +28,7 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
     <Formik
       initialValues={{
         name: '',
-        email: '',
+        user: user.name,
       }}
       validate={
         values => {
@@ -36,14 +37,13 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
             errors.name = 'Vul eerst een naam in!';
           else if (values.name.length < 2) errors.name = 'Die naam is een beetje kort, nee?';
           else if (values.name.length > 20) errors.name = 'Dat is geen naam, dat is een volzin!';
-          else if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-            errors.email = 'Dit lijkt niet op een email adres ;)';
+          else if (values.user && values.user.length > 20) errors.user = 'Zo een lange naam kunnen wij niet onthouden.';
           return errors;
         }
       }
       onSubmit={(values: IFormValues) => {
-        setUser(values.email);
-        createName({ variables: { name: values.name, email: values.email } });
+        setUser(values.user);
+        createName({ variables: { name: values.name, userName: values.user } });
       }}
       render={({ errors, values }: FormikProps<IFormValues>) => (
         [<Form className={css`
@@ -66,7 +66,7 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
             )}
           />
           {
-            user.email ? (
+            user.name ? (
               <div className={css`
                 display: flex;
                 flex-flow: column;
@@ -80,39 +80,40 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
                   background: rgba(255,255,255,.1);
                   border-radius: 60px;
                 `}>
-                  {user.email}
+                  {user.name}
                 </div>
-                <a className={css`
+                <Link to="/the-naming-game/redirect" className={css`
                   font-size: 12px;
                   margin-top: 10px;
                   cursor: pointer;
-                `} onClick={() => setUser('')}>Verander emailadres</a>
+                `} onClick={() => setUser('')}>
+                  Verander van gebruiker
+                </Link>
               </div>
 
             ) : (
 
                 <Field
-                  name="email"
+                  name="user"
                   render={({ field, form }: FieldProps<IFormValues>) => (
                     <div className={labelContainerStyles}>
-                      <h2>Email</h2>
-                      <Input type="text" {...field} placeholder="email" error={form.errors.email} />
+                      <h2>Jouw naam</h2>
+                      <Input type="text" {...field} placeholder="Pedro" error={form.errors.user} />
                       <FixedSpan>
-                        {form.touched.email &&
-                          form.errors.email &&
-                          form.errors.email}
+                        {form.touched.user &&
+                          form.errors.user &&
+                          form.errors.user}
                       </FixedSpan>
                     </div>
                   )}
                 />
               )
           }
-          <div>{error && error.message}</div>
           <div>{error ? error.message === "GraphQL error: A unique constraint would be violated on Name. Details: Field name = name" ? "Deze naam is al toegevoegd aan de lijst!" : error.message : ''}</div>
           <Button
             text='Toevoegen'
             loading={loading ? true : false}
-            disabled={errors.name || !values.name || errors.email}
+            disabled={errors.name || !values.name || errors.user}
           />
         </Form>,
         <NamesList key={2} />]

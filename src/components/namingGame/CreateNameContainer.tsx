@@ -14,8 +14,8 @@ interface ICreateNameContainerState {
 
 
 const CREATE_NAME = gql`
-  mutation createName($name: String!, $email: String) {
-    createName(name: $name, creator: $email) {
+  mutation createName($name: String!, $userName: String) {
+    createName(name: $name, creatorName: $userName) {
       name
     } 
   }
@@ -24,25 +24,26 @@ const CREATE_NAME = gql`
 export default class CreateNameContainer extends React.Component<{}, ICreateNameContainerState> {
   constructor(props) {
     super(props);
-    this.state = { user: { email: '', id: '', name: '' } }
     // check local storage for user
-    const localUserEmail = localStorage.getItem('email');
-    if (localUserEmail) this.state = ({
+    const localUserName = localStorage.getItem('userName');
+    if (localUserName) this.state = ({
       user: {
-        id: '', name: '',
-        email: localUserEmail,
+        id: '', email: '',
+        name: localUserName,
       }
     });
+    else this.state = { user: { email: '', id: '', name: '' } };
+
     this.setUser = this.setUser.bind(this);
   }
 
-  public setUser(email?: string) {
-    if (email || email === '') {
-      localStorage.setItem('email', email);
+  public setUser(userName?: string) {
+    if (userName || userName === '') {
+      localStorage.setItem('userName', userName);
       this.setState({
         user: {
           ...this.state.user,
-          email,
+          userName,
         }
       })
     }
@@ -71,7 +72,13 @@ export default class CreateNameContainer extends React.Component<{}, ICreateName
               </div>
             );
             return (
-              <CreateName createName={createName} error={error} loading={loading} setUser={this.setUser} user={this.state.user} />
+              <CreateName
+                createName={createName}
+                error={error}
+                loading={loading}
+                setUser={this.setUser}
+                user={this.state.user}
+              />
             )
           }}
         </Mutation>

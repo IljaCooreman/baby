@@ -42,8 +42,11 @@ const TextWrapper = styled('div')`
 `;
 
 const Header = styled('div')`
+  position: relative;
+  flex-basis: auto;
   display: flex;
   margin: 14px;
+  flex-shrink: 0;
 `;
 
 const LeaderboardToggle = styled('div')`
