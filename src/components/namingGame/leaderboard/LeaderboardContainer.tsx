@@ -3,33 +3,44 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled, { css } from 'react-emotion';
 import { IName } from 'src/typeDefs';
+import Detail from './Detail';
 
 interface IState {
   hoverIndex: number | null;
 }
 
-
 const Container = styled('div')`
-  position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
   margin-top: 40px;
-  flex-flow: column wrap;
-  align-items: center;
   margin: 10px 0;
-  flex-grow: 1;
   color: black;
+`;
+
+
+const ListGrid = styled('div')`
+
+  display: grid;
+  grid-template-columns: 10fr 30px minmax(min-content, 1fr) 1px; 
+  grid-auto-rows: 30px;
+  grid-column-gap: 14px;
+  grid-auto-flow: column;
+  position: relative;
   overflow-y: scroll;
 `;
 
 const Name = styled('div')`
-display: block;
+grid-column-start: 3;
+  grid-column-end: span 1;
+  justify-self: end;
 font-size: 14px;
 font-weight: 400;
 color: black;
 border-radius: 20px;
-text-align: right;
+justify-self: left;
 padding: 4px 8px;
-transition: background .3s ease;
+margin: 4px;
 cursor: pointer;
 &&:hover {
   background: black;
@@ -40,7 +51,15 @@ cursor: pointer;
 
 const OrderNumber = styled('div')`
   color: rgba(0,0,0,.6);
-  padding: 4px;
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  justify-content: right;
+  place-self: center;
+`;
+
+const Line = styled('div')`
+  grid-column: 4 / span 1;
+  background: rgba(0,0,0,.1);
 `;
 
 const Note = styled('span')`
@@ -48,18 +67,6 @@ const Note = styled('span')`
   font-size: 12px;
 `;
 
-const NameWrapper = styled('div')`
-position: relative;
-  display: flex;
-  min-height: 24px;
-  margin: 6px;
-  max-width: 120px;
-`;
-
-const Line = styled('div')`
-  width: 1px;
-  background: rgba(0,0,0,.2);
-`;
 
 export default class LeaderBoardContainer extends React.Component<{}, IState> {
   constructor(props) {
@@ -68,6 +75,7 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
 
   }
   public render() {
+    const { hoverIndex } = this.state;
     return (
 
       <Query
@@ -99,23 +107,25 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
           // });
           return (
             <Container>
-              {
-                data.names.map((name: IName, i) => (
-                  <NameWrapper key={name.id}>
-                    <OrderNumber>#{i + 1}</OrderNumber>
+
+              <ListGrid>
+
+                {
+                  data.names.map((name: IName, i) => (
+                    [<OrderNumber key={i}>#{i + 1}</OrderNumber>,
                     <Name
+                      key={`${i}-name`}
                       onMouseEnter={() => this.setState({ hoverIndex: i })}
                       onMouseLeave={() => this.setState({ hoverIndex: null })}
                     >
                       {name.name}
-                    </Name>
-                    <Line />
-                  </NameWrapper>
-                ))
-              }
-              {
-                this.state.hoverIndex && <div>{data.names[this.state.hoverIndex].score}{console.log(data.names[this.state.hoverIndex].creator)}</div>
-              }
+                    </Name>,
+                    <Line key={`${i}-line`} />
+                    ]
+                  ))
+                }
+              </ListGrid>
+              <Detail name={hoverIndex ? data.names[hoverIndex] : null} index={hoverIndex} />
               <Note>{data.names.length} namen in de lijst</Note>
             </Container>
           );

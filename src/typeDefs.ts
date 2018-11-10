@@ -11,5 +11,5 @@ export interface IName {
   score: number,
   stability: number,
   votes: number,
-  creator?: IUser,
+  creator: IUser,
 }

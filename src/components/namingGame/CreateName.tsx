@@ -97,8 +97,8 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
                   name="user"
                   render={({ field, form }: FieldProps<IFormValues>) => (
                     <div className={labelContainerStyles}>
-                      <h2>Jouw naam</h2>
-                      <Input type="text" {...field} placeholder="Pedro" error={form.errors.user} />
+                      <h2>Jouw (eigen) naam</h2>
+                      <Input type="text" {...field} placeholder="Ilja" error={form.errors.user} />
                       <FixedSpan>
                         {form.touched.user &&
                           form.errors.user &&
