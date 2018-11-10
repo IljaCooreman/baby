@@ -34,10 +34,10 @@ interface IDetailProps {
 }
 
 const Detail: React.SFC<IDetailProps> = ({ name, index }) => {
-  if (!name || !index) return <PlaceHolder />
+  if (!name) return <PlaceHolder />
   return (
     <PlaceHolder>
-      <Name><Rank>#{index + 1}</Rank>{name.name}</Name>
+      <Name><Rank>#{index ? index + 1 : 1}</Rank>{name.name}</Name>
       <div className={css`
       display: block;
         margin: 12px 0;
