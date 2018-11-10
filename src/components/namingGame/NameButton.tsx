@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from 'react-emotion';
+import styled, { css } from 'react-emotion';
 import { IName } from '../../typeDefs';
-import { calcWeight } from './utils';
+import { calcWeight } from './utils'
 
 
 const Container = styled('div')`
@@ -16,32 +16,43 @@ const Container = styled('div')`
   border-radius: 60px;
   text-transform: capitalize;
   cursor: pointer;
-  transition: all .2s ease;
+  /* transition: background .2s ease, transform .3s ease-out, opacity .3s ease-out, color .4s ease-out; */
+  transition: all .3s ease-out;
   &&:hover {
     background: #F663AD;
     padding: 22px 54px;
   }
 `;
 
+const loser = css`
+opacity: 0;
+  /* color: rgba(0,0,0,.1); */
+  transform: scale(.9);
+`;
+
 
 interface INameButton extends IName {
   pickName: ({ }) => void,
-  handleNameClick: () => void,
+  handleNameClick: (loserIds: string[]) => void,
   contestants: IName[],
+  loose: boolean,
 };
 
 
 
 
-const NameButton: React.SFC<INameButton> = ({ name, id, pickName, handleNameClick, score, contestants }) => {
+const NameButton: React.SFC<INameButton> = ({ name, id, pickName, handleNameClick, score, contestants, loose }) => {
   const handleClick = (e: any) => {
     e.preventDefault();
-    pickName({ variables: { winnerId: id, loserIds: contestants.map(contestant => contestant.id), weight: calcWeight(score, contestants) } });
-    handleNameClick();
+    const loserIds = contestants.map(contestant => contestant.id);
+    handleNameClick(loserIds);
+    setTimeout(() => {
+      pickName({ variables: { winnerId: id, loserIds, weight: calcWeight(score, contestants) } });
+    }, 800)
   }
 
   return (
-    <Container onClick={handleClick}>
+    <Container className={loose ? loser : 'grow'} onClick={handleClick}>
       {name}
     </Container>
   )

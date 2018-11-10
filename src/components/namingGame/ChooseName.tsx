@@ -10,7 +10,8 @@ interface IChooseNameProps {
 };
 
 interface IState {
-  names: IName[]
+  loserIds: string[],
+  contestants: IName[],
 }
 
 const Background = styled('div')`
@@ -37,28 +38,38 @@ mutation pickName($winnerId: ID!, $loserIds: [ID!], $weight: Float) {
 
 export default class ChooseName extends React.Component<IChooseNameProps, IState> {
   constructor(props: IChooseNameProps) {
-    super(props)
+    super(props);
+    this.state = { loserIds: [], contestants: pickContestants(this.props.names) }
+    this.handleNameClick = this.handleNameClick.bind(this);
   }
 
-  public handleNameClick() {
-    console.log('clicked')
+  public handleNameClick(loserIds: string[]) {
+    this.setState({ loserIds });
+    setTimeout(() => {
+      this.setState({ contestants: pickContestants(this.props.names), loserIds: [] })
+    }, 800)
+    console.log('clicked', loserIds)
   }
 
   public render() {
     return (
       <Mutation mutation={PICK_NAME}>
-        {(pickName, { data, loading }) => {
-          if (loading) return (
-            <div>keuze opslaan</div>
-          );
+        {(pickName, { data, }) => {
           return (
             <Background>
               {
-                pickContestants(this.props.names).map((name, i, names) => {
+                this.state.contestants.map((name, i, names) => {
                   const selection = names.slice();
                   selection.splice(i, 1);
+                  const loose = this.state.loserIds.find(id => id === name.id) ? true : false;
                   return (
-                    <NameButton key={name.id} {...name} pickName={pickName} handleNameClick={this.handleNameClick} contestants={selection} />
+                    <NameButton
+                      key={name.id} {...name}
+                      pickName={pickName}
+                      handleNameClick={this.handleNameClick}
+                      contestants={selection}
+                      loose={loose}
+                    />
                   )
                 })
               }
