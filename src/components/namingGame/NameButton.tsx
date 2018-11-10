@@ -14,6 +14,7 @@ const Container = styled('div')`
   margin: 10px;
   background: #000000;
   border-radius: 60px;
+  text-transform: capitalize;
   cursor: pointer;
   transition: all .2s ease;
   &&:hover {

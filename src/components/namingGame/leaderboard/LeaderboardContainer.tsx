@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import styled, { css } from 'react-emotion';
 import { IName } from 'src/typeDefs';
 import Detail from './Detail';
+import { Link } from 'react-router-dom';
 
 interface IState {
   hoverIndex: number | null;
@@ -41,6 +42,7 @@ border-radius: 20px;
 justify-self: left;
 padding: 4px 8px;
 margin: 4px;
+text-transform: capitalize;
 cursor: pointer;
 &&:hover {
   background: black;
@@ -65,6 +67,17 @@ const Line = styled('div')`
 const Note = styled('span')`
   color: rgba(0,0,0,.2);
   font-size: 12px;
+`;
+
+const LeaderboardToggle = styled('div')`
+  color: black;
+  margin: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: color .3s ease;
+  &&:hover {
+    color: #6AD6DC;
+  }
 `;
 
 
@@ -98,18 +111,10 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
       >
         {({ loading, error, data }) => {
           if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>...</div>)
-          if (error) return null;
-          console.log(data.names)
-          // const sortedData = data.names.forEach(name => console.log(name.score))
-          // const sortedData = data.names.sort((prev, next) => {
-          //   console.log(next.score, prev.score);
-          //   return next.score - prev.score;
-          // });
-          return (
-            <Container>
-
+          if (error) return <div>Namen laden...</div>;
+          return ([
+            <Container key={1}>
               <ListGrid>
-
                 {
                   data.names.map((name: IName, i) => (
                     [<OrderNumber key={i}>#{i + 1}</OrderNumber>,
@@ -125,9 +130,15 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
                   ))
                 }
               </ListGrid>
-              <Detail name={hoverIndex ? data.names[hoverIndex] : null} index={hoverIndex} />
+              <Detail name={hoverIndex === null ? null : data.names[hoverIndex]} index={hoverIndex} />
               <Note>{data.names.length} namen in de lijst</Note>
-            </Container>
+            </Container>,
+            <LeaderboardToggle key={22}>
+              <Link to={'/the-naming-game/vote'}>
+                stem op namen
+              </Link>
+            </LeaderboardToggle>
+          ]
           );
         }}
       </Query>

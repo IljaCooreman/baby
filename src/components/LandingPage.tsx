@@ -41,13 +41,18 @@ const LandingPage: React.SFC<{}> = () => {
       </HalfScreen>
       <HalfScreen lighter={true}>
         <h2>The naming game</h2>
-        <P>Help ons een mooie naam bedenken!</P>
-        <Link to={'/the-naming-game/vote'} className={buttonMargins}>
-          <Button text={'Kies een naam!'} big={true} disabled={false} />
-        </Link>
-        <Link to={'/the-naming-game/create-name'}>
-          Voeg een naam toe
-      </Link>
+        <P>Help ons een mooie naam bedenken.</P>
+        <div className={css`display: flex; flex-flow: row wrap; justify-content: center; margin: 44px 0 20px;`}>
+          <Link to={'/create-name'}>
+            <Button text={'1. Suggereer een naam'} big={false} noBackground={true} />
+          </Link>
+          <Link to={'/the-naming-game/vote'}>
+            <Button text={'2. Stem op je favoriete namen'} big={false} noBackground={true} />
+          </Link>
+          <Link to={'/the-naming-game/leaderboard'}>
+            <Button text={'3. Bekijk de scorelijst'} big={false} noBackground={true} />
+          </Link>
+        </div>
       </HalfScreen>
     </div>
   )

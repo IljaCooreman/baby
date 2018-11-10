@@ -116,7 +116,7 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
             disabled={errors.name || !values.name || errors.user}
           />
         </Form>,
-        <NamesList key={2} />]
+        <NamesList key={12} />]
       )}
     />
   );

@@ -47,9 +47,9 @@ class App extends React.Component<{}, IAppState> {
             <Route path="/userlist" component={UserList} />
             <Route path="/guess/form" component={CreateGuessContainer} />
             <Route path="/guess/results" component={GuessesList} />
-            {/* <Route path="/the-naming-game" component={NamingGameContainer} /> */}
-            <Route path="/the-naming-game/vote" component={NamingGameContainer} />
-            <Route path="/the-naming-game/create-name" component={CreateNameContainer} />
+            <Route path="/the-naming-game" component={NamingGameContainer} />
+            {/* <Route path="/the-naming-game/vote" component={NamingGameContainer} /> */}
+            <Route path="/create-name" component={CreateNameContainer} />
             <Route path="/the-naming-game/redirect" render={() => <Redirect to="/the-naming-game/create-name" />} />
           </AppDiv>
         </Router>

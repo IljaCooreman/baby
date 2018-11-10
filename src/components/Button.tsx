@@ -11,9 +11,10 @@ export interface IButtonProps {
   submit?: boolean,
   loading?: boolean,
   disabled?: boolean,
+  noBackground?: boolean,
 }
 
-const Button: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit, loading, disabled }) => {
+const Button: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, submit, loading, disabled, noBackground }) => {
   return (
     <button type={submit ? 'submit' : ''}
       disabled={disabled}
@@ -23,7 +24,7 @@ const Button: React.SFC<IButtonProps> = ({ url, handleClick, text, icon, big, su
       border-radius: 48px;
       border: none;
       font-weight: 700;
-      font-size: 25px;
+      font-size: ${noBackground ? '18px' : '25px'};
       padding: ${big ? 14 : 5}px 20px;
       margin: 4px;
       color: #FAF9FF;

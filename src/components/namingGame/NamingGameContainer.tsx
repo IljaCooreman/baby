@@ -3,10 +3,9 @@ import * as React from 'react';
 import ChooseNameContainer from './ChooseNameContainer';
 import CloseButtonBlack from '../CloseButtonBlack';
 import LeaderboardContainer from './leaderboard/LeaderboardContainer';
+import { Route } from 'react-router-dom';
 
-interface INamingGameContainerState {
-  showLeaderboard: boolean,
-}
+
 const Container = styled('div')`
 position: absolute;
 display: flex;
@@ -49,26 +48,14 @@ const Header = styled('div')`
   flex-shrink: 0;
 `;
 
-const LeaderboardToggle = styled('div')`
-  color: black;
-  margin: 40px;
-  text-align: center;
-  cursor: pointer;
-  transition: color .3s ease;
-  &&:hover {
-    color: #6AD6DC;
-  }
-`;
 
-class NamingGameContainer extends React.Component<{}, INamingGameContainerState> {
-  constructor(props) {
-    super(props);
-    this.state = { showLeaderboard: false };
-  }
+
+class NamingGameContainer extends React.Component<{ location: { pathname: string } }> {
 
 
   public render() {
-    const { showLeaderboard } = this.state;
+    const { pathname } = this.props.location;
+    console.log(pathname)
     return (
       <Container>
         <Header>
@@ -78,14 +65,9 @@ class NamingGameContainer extends React.Component<{}, INamingGameContainerState>
             <P>Welke van onderstaande namen vind jij het beste passen voor de dochter van Roxanne en Ilja?</P>
           </TextWrapper>
         </Header>
-        {
-          showLeaderboard ? <LeaderboardContainer /> : <ChooseNameContainer />
-        }
-        <LeaderboardToggle onClick={() => this.setState({ showLeaderboard: !this.state.showLeaderboard })}>
-          {
-            showLeaderboard ? 'stem op namen' : 'toon namenlijst'
-          }
-        </LeaderboardToggle>
+        <Route path={'/the-naming-game/vote'} component={ChooseNameContainer} />
+        <Route path={'/the-naming-game/leaderboard'} component={LeaderboardContainer} />
+
       </Container>
     )
   }
