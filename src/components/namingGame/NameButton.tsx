@@ -5,7 +5,7 @@ import { calcWeight } from './utils'
 
 
 const Container = styled('div')`
-  font-family: Rubik-Bold;
+  font-family: Rubik;
   font-size: 40px;
   font-weight: 700;
   color: #FFFFFF;
@@ -16,7 +16,7 @@ const Container = styled('div')`
   border-radius: 60px;
   text-transform: capitalize;
   cursor: pointer;
-  /* transition: background .2s ease, transform .3s ease-out, opacity .3s ease-out, color .4s ease-out; */
+
   transition: all .3s ease-out;
   &&:hover {
     background: #F663AD;

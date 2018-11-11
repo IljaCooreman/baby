@@ -21,7 +21,7 @@ flex-flow: column nowrap;
 const Title = styled('h2')`
   color: black;
     font-size: 18px;
-    font-family: 'Rubik-Bold';
+    font-family: Rubik;
     text-align: left;
     margin: 0;
 `;

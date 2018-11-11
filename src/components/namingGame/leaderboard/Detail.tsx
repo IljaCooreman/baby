@@ -19,7 +19,7 @@ const Rank = styled('div')`
 `;
 
 const Name = styled('div')`
-font-family: Rubik-Bold;
+font-family: Rubik;
 font-size: 40px;
 line-height: 32px;
 color: #0B0B0B;
@@ -48,7 +48,7 @@ const Detail: React.SFC<IDetailProps> = ({ name, index }) => {
         {name.creator ? name.creator.name : 'een onbekende'}
       </div>
       <div className={css`
-        font-family: Rubik-Bold;
+        font-family: Rubik;
         font-size: 14px;
       `}>
         {name.score} punten
