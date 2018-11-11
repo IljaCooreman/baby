@@ -47,7 +47,7 @@ export default class ChooseName extends React.Component<IChooseNameProps, IState
     this.setState({ loserIds });
     setTimeout(() => {
       this.setState({ contestants: pickContestants(this.props.names), loserIds: [] })
-    }, 800)
+    }, 700)
     console.log('clicked', loserIds)
   }
 

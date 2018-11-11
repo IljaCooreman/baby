@@ -36,7 +36,7 @@ const CreateName: React.SFC<ICreateUserFormProps> = ({ createName, data, error, 
           if (!values.name)
             errors.name = 'Vul eerst een naam in!';
           else if (values.name.length < 2) errors.name = 'Die naam is een beetje kort, nee?';
-          else if (values.name.length > 20) errors.name = 'Dat is geen naam, dat is een volzin!';
+          else if (values.name.length > 14) errors.name = 'Dat is geen naam, dat is een volzin!';
           else if (values.user && values.user.length > 20) errors.user = 'Zo een lange naam kunnen wij niet onthouden.';
           return errors;
         }

@@ -30,16 +30,6 @@ const LandingPage: React.SFC<{}> = () => {
   return (
     <div>
       <HalfScreen>
-        <h2>The guessing game</h2>
-        <P>Hier kan je voorspellen wanneer de baby geboren wordt, …</P>
-        <Link to={'/guess/form'} className={buttonMargins}>
-          <Button text={'Waag je gok'} big={true} />
-        </Link>
-        <Link to={'/guess/results'}>
-          bekijk alle voorspellingen
-      </Link>
-      </HalfScreen>
-      <HalfScreen lighter={true}>
         <h2>The naming game</h2>
         <P>Help ons een mooie naam bedenken.</P>
         <div className={css`display: flex; flex-flow: row wrap; justify-content: center; margin: 44px 0 20px;`}>
@@ -53,6 +43,16 @@ const LandingPage: React.SFC<{}> = () => {
             <Button text={'3. Bekijk de scorelijst'} big={false} noBackground={true} />
           </Link>
         </div>
+      </HalfScreen>
+      <HalfScreen lighter={true}>
+        <h2>The guessing game</h2>
+        <P>Hier kan je voorspellen wanneer de baby geboren wordt, …</P>
+        <Link to={'/guess/form'} className={buttonMargins}>
+          <Button text={'Waag je gok'} big={true} />
+        </Link>
+        <Link to={'/guess/results'}>
+          bekijk alle voorspellingen
+      </Link>
       </HalfScreen>
     </div>
   )
