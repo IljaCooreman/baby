@@ -80,14 +80,14 @@ const LeaderboardToggle = styled('div')`
   }
 `;
 
-
+/* tslint:disable */
 export default class LeaderBoardContainer extends React.Component<{}, IState> {
   constructor(props) {
     super(props);
-    this.state = { hoverIndex: null }
-
+    this.state = { hoverIndex: 0 }
   }
   public render() {
+
     const { hoverIndex } = this.state;
     return (
 
@@ -118,10 +118,12 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
                 {
                   data.names.map((name: IName, i) => (
                     [<OrderNumber key={i}>#{i + 1}</OrderNumber>,
+
                     <Name
+                      className={i === hoverIndex ? css`background: black; color: white;` : ''}
                       key={`${i}-name`}
                       onMouseEnter={() => this.setState({ hoverIndex: i })}
-                      onMouseLeave={() => this.setState({ hoverIndex: null })}
+                    // onMouseLeave={() => this.setState({ hoverIndex: null })}
                     >
                       {name.name}
                     </Name>,
@@ -145,4 +147,5 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
     )
   }
 }
+/* tslint:enable */
 
