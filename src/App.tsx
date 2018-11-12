@@ -50,7 +50,7 @@ class App extends React.Component<{}, IAppState> {
             <Route path="/the-naming-game" component={NamingGameContainer} />
             {/* <Route path="/the-naming-game/vote" component={NamingGameContainer} /> */}
             <Route path="/create-name" component={CreateNameContainer} />
-            <Route path="/the-naming-game/redirect" render={() => <Redirect to="/the-naming-game/create-name" />} />
+            <Route path="/the-naming-game/redirect" render={() => <Redirect to="/create-name" />} />
           </AppDiv>
         </Router>
       </ApolloProvider>
