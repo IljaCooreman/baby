@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IName } from '../../../typeDefs';
+import { INameRatio } from '../../../typeDefs';
 import styled, { css } from 'react-emotion';
 
 const PlaceHolder = styled('div')`
@@ -29,15 +29,16 @@ overflow-wrap: break-word;
 
 
 interface IDetailProps {
-  name: IName,
-  index: number | null,
+  name: INameRatio,
+  index: number,
+  newNames: boolean,
 }
 
-const Detail: React.SFC<IDetailProps> = ({ name, index }) => {
+const Detail: React.SFC<IDetailProps> = ({ name, index, newNames }) => {
   if (!name) return <PlaceHolder />
   return (
     <PlaceHolder>
-      <Name><Rank>#{index ? index + 1 : 1}</Rank>{name.name}</Name>
+      <Name><Rank>{newNames ? 'Nieuw' : `#${index ? index + 1 : 1}`}</Rank>{name.name}</Name>
       <div className={css`
       display: block;
         margin: 12px 0;
@@ -51,8 +52,14 @@ const Detail: React.SFC<IDetailProps> = ({ name, index }) => {
         font-family: Rubik;
         font-size: 14px;
       `}>
-        {name.score} punten
+        {
+          newNames ? `nog ${6 - name.duels} keer stemmen` :
+            `${(name.ratio * 100).toFixed(0)}% winratio`
+        }
       </div>
+      <div className={css`
+          color: rgba(0,0,0,.4);
+        `}>{name.votes} wins, {name.duels} duels</div>
     </PlaceHolder>
   )
 };

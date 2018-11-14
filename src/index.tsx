@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
 import App from './App';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 
 
 WebFont.load({
@@ -16,4 +16,4 @@ ReactDOM.render(
   <App />,
   document.getElementById('root') as HTMLElement
 );
-registerServiceWorker();
+unregister();

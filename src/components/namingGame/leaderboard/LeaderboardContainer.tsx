@@ -5,9 +5,11 @@ import styled, { css } from 'react-emotion';
 import { IName } from 'src/typeDefs';
 import Detail from './Detail';
 import { Link } from 'react-router-dom';
+import { addRatios, splitNewNames } from '../utils';
 
 interface IState {
-  hoverIndex: number | null;
+  hoverIndex: number;
+  newNames: boolean,
 }
 
 const Container = styled('div')`
@@ -80,15 +82,25 @@ const LeaderboardToggle = styled('div')`
   }
 `;
 
+const ListTitles = styled('h3')`
+  grid-column: 2 / span 2;
+  grid-row-end: span 2;
+  color: black;
+  margin: 10px 0;
+  place-self: end flex-start;
+  font-family: Rubik;
+  font-size: 14px;
+`;
+
 /* tslint:disable */
 export default class LeaderBoardContainer extends React.Component<{}, IState> {
   constructor(props) {
     super(props);
-    this.state = { hoverIndex: 0 }
+    this.state = { hoverIndex: 0, newNames: false }
   }
   public render() {
 
-    const { hoverIndex } = this.state;
+    const { hoverIndex, newNames } = this.state;
     return (
 
       <Query
@@ -112,17 +124,19 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
         {({ loading, error, data }) => {
           if (loading) return (<div className={css`display: flex; padding-top: 50px; justify-content: center; align-content: center;`}>...</div>)
           if (error) return <div>Namen laden...</div>;
+          const splitData = splitNewNames(addRatios(data.names));
           return ([
             <Container key={1}>
               <ListGrid>
+                <ListTitles>Gerankschikte namen</ListTitles>
                 {
-                  data.names.map((name: IName, i) => (
+                  splitData.ranked.map((name: IName, i) => (
                     [<OrderNumber key={i}>#{i + 1}</OrderNumber>,
 
                     <Name
-                      className={i === hoverIndex ? css`background: black; color: white;` : ''}
+                      className={i === hoverIndex && !newNames ? css`background: black; color: white;` : ''}
                       key={`${i}-name`}
-                      onMouseEnter={() => this.setState({ hoverIndex: i })}
+                      onMouseEnter={() => this.setState({ hoverIndex: i, newNames: false })}
                     // onMouseLeave={() => this.setState({ hoverIndex: null })}
                     >
                       {name.name}
@@ -131,9 +145,24 @@ export default class LeaderBoardContainer extends React.Component<{}, IState> {
                     ]
                   ))
                 }
+                <ListTitles>Nieuwe namen</ListTitles>
+                {
+                  splitData.new.map((name: IName, i) => (
+                    [
+                      <Name
+                        className={i === hoverIndex && newNames ? css`background: black; color: white;` : ''}
+                        key={`${i}-name`}
+                        onMouseEnter={() => this.setState({ hoverIndex: i, newNames: true })}
+                      >
+                        {name.name}
+                      </Name>,
+                      <Line key={`${i}-line`} />
+                    ]
+                  ))
+                }
               </ListGrid>
-              <Detail name={hoverIndex === null ? null : data.names[hoverIndex]} index={hoverIndex} />
-              <Note>{data.names.length} namen in de lijst</Note>
+              <Detail name={splitData[newNames ? 'new' : 'ranked'][hoverIndex]} index={hoverIndex} newNames={newNames} />
+              <Note>{splitData.new.length + splitData.ranked.length} namen, waarvan {splitData.ranked.length} gerangschikt en {splitData.new.length} nieuw.</Note>
             </Container>,
             <LeaderboardToggle key={22}>
               <Link to={'/the-naming-game/vote'}>

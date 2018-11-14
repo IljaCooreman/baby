@@ -13,3 +13,7 @@ export interface IName {
   votes: number,
   creator: IUser,
 }
+
+export interface INameRatio extends IName {
+  ratio: number,
+}
