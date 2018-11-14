@@ -53,7 +53,7 @@ const Detail: React.SFC<IDetailProps> = ({ name, index, newNames }) => {
         font-size: 14px;
       `}>
         {
-          newNames ? `nog ${6 - name.duels} keer stemmen` :
+          newNames ? `nog ${11 - name.duels} keer stemmen` :
             `${(name.ratio * 100).toFixed(0)}% winratio`
         }
       </div>

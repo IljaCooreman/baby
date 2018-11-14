@@ -51,7 +51,7 @@ export function addRatios(names: IName[]): INameRatio[] {
 export function splitNewNames(names: INameRatio[]): ISplittedNames {
   const accum: ISplittedNames = { ranked: [], new: [] };
   const splitted = names.reduce((acc, name: INameRatio) => {
-    name.duels < 7 ? acc.new.push(name) : acc.ranked.push(name);
+    name.duels < 10 ? acc.new.push(name) : acc.ranked.push(name);
     return acc;
   }, accum);
   return {
